@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="" type="image/png">
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body ng-app = "tetris">
+
+<div id="boundary"></div>
+
+<div id="square-next" class="hidden">
+    <div class="square1-next brick"></div>
+    <div class="square2-next brick"></div>
+    <div class="square3-next brick"></div>
+    <div class="square4-next brick"></div>
+</div>
+
+<div id="horizontal-rectangle-next" class="hidden">
+    <div class="horizontal-rectangle1-next brick"></div>
+    <div class="horizontal-rectangle2-next brick"></div>
+    <div class="horizontal-rectangle3-next brick"></div>
+    <div class="horizontal-rectangle4-next brick"></div>
+</div>
+
+<div id="vertical-rectangle-next" class="hidden">
+    <div class="vertical-rectangle1-next brick"></div>
+    <div class="vertical-rectangle2-next brick"></div>
+    <div class="vertical-rectangle3-next brick"></div>
+    <div class="vertical-rectangle4-next brick"></div>
+</div>
+
+<div id="l-next" class="hidden">
+    <div class="l1-next brick"></div>
+    <div class="l2-next brick"></div>
+    <div class="l3-next brick"></div>
+    <div class="l4-next brick"></div> 
+</div>
+
+<div id="horizontal-zigzag-next" class="hidden">
+    <div class="horizontal-zigzag1-next brick"></div>
+    <div class="horizontal-zigzag2-next brick"></div>
+    <div class="horizontal-zigzag3-next brick"></div>
+    <div class="horizontal-zigzag4-next brick"></div>
+</div>
+
+<div id="vertical-zigzag-next" class="hidden">
+    <div class="vertical-zigzag1-next brick"></div>
+    <div class="vertical-zigzag2-next brick"></div>
+    <div class="vertical-zigzag3-next brick"></div>
+    <div class="vertical-zigzag4-next brick"></div>
+</div>
+
+<h3 class="next-heading">NEXT</h3>
+<div id="next-block"></div>
+
+
+
+<!--Script FIles included here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<!--Script FIles included here -->
+<script >
+    angular.module('tetris',['ngMaterial']);
+
+</script>
+</body>
+
+</html>
