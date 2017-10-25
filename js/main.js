@@ -68,7 +68,12 @@ function moveDown(){
     z = checkEnd(currentLeft, currentTop);
     if(z==1){return;}
     y = checkBelow(currentLeft, currentTop)
-    if(y==1){return;}
+    if(y==1){
+               
+               clearInterval(interval);
+               checkCompleteRow(top);
+               generateNextBlock();
+      return;}
     childEle4.css("top", currentTop);
     // console.log(currentTop)
 
@@ -78,8 +83,14 @@ function moveDown(){
     currentTop+=25;
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
-      return;
-    }
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
+
+               clearInterval(interval);
+               checkCompleteRow(top);
+               generateNextBlock();
+      return;}
     childEle3.css("top", currentTop);
 
 
@@ -88,6 +99,17 @@ function moveDown(){
     currentTop+=25;
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
+
+               currentTop3=childEle3.position().top;
+               currentTop3-=25;
+               childEle3.css("top", currentTop3);
+
+               clearInterval(interval);
+               checkCompleteRow(top);
+               generateNextBlock();
       return;}
     childEle2.css("top", currentTop);
 
@@ -96,6 +118,21 @@ function moveDown(){
     currentTop+=25;
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
+
+               currentTop3=childEle3.position().top;
+               currentTop3-=25;
+               childEle3.css("top", currentTop3);
+
+               currentTop2=childEle2.position().top;
+               currentTop2-=25;
+               childEle2.css("top", currentTop2);
+               
+               clearInterval(interval);
+               checkCompleteRow(top);
+               generateNextBlock();
       return;}
     childEle1.css("top", currentTop);
     
@@ -128,7 +165,9 @@ function moveRight(){
     currentLeft=childEle4.position().left;
     currentLeft+=25;
     x = checkRight(currentLeft, currentTop)
-    if(x==1){return;}
+    if(x==1){
+      
+      return;}
     else{
       childEle4.css("left", currentLeft);
     }
@@ -137,7 +176,12 @@ function moveRight(){
     currentLeft=childEle3.position().left;
     currentLeft+=25;
     x = checkRight(currentLeft, currentTop)
-    if(x==1){}
+    if(x==1){
+      currentLeft4=childEle4.position().left;
+      currentLeft4-=25;
+      childEle4.css("left", currentLeft4);
+      return;
+    }
     else{
       childEle3.css("left", currentLeft);
     }
@@ -146,7 +190,16 @@ function moveRight(){
     currentLeft=childEle2.position().left;
     currentLeft+=25;
     x = checkRight(currentLeft, currentTop)
-    if(x==1){}
+    if(x==1){
+      currentLeft4=childEle4.position().left;
+      currentLeft4-=25;
+      childEle4.css("left", currentLeft4);
+
+      currentLeft3=childEle3.position().left;
+      currentLeft3-=25;
+      childEle3.css("left", currentLeft3);
+      return;
+    }
     else{
       childEle2.css("left", currentLeft);
     }
@@ -155,7 +208,20 @@ function moveRight(){
     currentLeft=childEle1.position().left;
     currentLeft+=25;
     x = checkRight(currentLeft, currentTop)
-    if(x==1){}
+    if(x==1){
+      currentLeft4=childEle4.position().left;
+      currentLeft4-=25;
+      childEle4.css("left", currentLeft4);
+
+      currentLeft3=childEle3.position().left;
+      currentLeft3-=25;
+      childEle3.css("left", currentLeft3);
+
+      currentLeft2=childEle2.position().left;
+      currentLeft2-=25;
+      childEle2.css("left", currentLeft2);
+      return;
+    }
     else{
       childEle1.css("left", currentLeft);
     }
@@ -167,8 +233,10 @@ function moveLeft(){
     currentTop=childEle1.position().top;
     currentLeft=childEle1.position().left;
     currentLeft-=25;
-    w = checkRight(currentLeft, currentTop)
-    if(w==1){}
+    w = checkLeft(currentLeft, currentTop)
+    if(w==1){
+      return;
+    }
     else{
       childEle1.css("left", currentLeft);
     }
@@ -176,8 +244,13 @@ function moveLeft(){
     currentTop=childEle2.position().top;
     currentLeft=childEle2.position().left;
     currentLeft-=25;
-    w = checkRight(currentLeft, currentTop)
-    if(w==1){}
+    w = checkLeft(currentLeft, currentTop)
+    if(w==1){
+      currentLeft1=childEle1.position().left;
+      currentLeft1+=25;
+      childEle1.css("left", currentLeft1);
+      return;
+    }
     else{
       childEle2.css("left", currentLeft);
     }
@@ -185,8 +258,17 @@ function moveLeft(){
     currentTop=childEle3.position().top;
     currentLeft=childEle3.position().left;
     currentLeft-=25;
-    w = checkRight(currentLeft, currentTop)
-    if(w==1){}
+    w = checkLeft(currentLeft, currentTop)
+    if(w==1){
+      currentLeft1=childEle1.position().left;
+      currentLeft1+=25;
+      childEle1.css("left", currentLeft1);
+
+      currentLeft2=childEle2.position().left;
+      currentLeft2+=25;
+      childEle2.css("left", currentLeft2);
+      return;
+    }
     else{
       childEle3.css("left", currentLeft);
     }
@@ -194,8 +276,21 @@ function moveLeft(){
     currentTop=childEle4.position().top;
     currentLeft=childEle4.position().left;
     currentLeft-=25;
-    w = checkRight(currentLeft, currentTop)
-    if(w==1){return;}
+    w = checkLeft(currentLeft, currentTop)
+    if(w==1){
+      currentLeft1=childEle1.position().left;
+      currentLeft1+=25;
+      childEle1.css("left", currentLeft1);
+
+      currentLeft2=childEle2.position().left;
+      currentLeft2+=25;
+      childEle2.css("left", currentLeft2);
+
+      currentLeft3=childEle3.position().left;
+      currentLeft3+=25;
+      childEle3.css("left", currentLeft3);
+      return;
+      return;}
     else{
       childEle4.css("left", currentLeft);
     }
@@ -410,9 +505,9 @@ function checkBelow(left, top){
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
             if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"){
-       	       clearInterval(interval);
-               checkCompleteRow(top);
-       	       generateNextBlock();
+       	       // clearInterval(interval);
+               // checkCompleteRow(top);
+       	       // generateNextBlock();
        	       return 1;
     	    }
       // }
@@ -507,7 +602,7 @@ function checkRight(left, top){
     // if(currentRandonNumber == 0){
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg==""){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg==""){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -518,7 +613,7 @@ function checkLeft(left, top){
     // if(currentRandonNumber == 0){
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg==""){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg==""){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -611,11 +706,11 @@ function checkCompleteRow(top){
 
 function completeRow(j){
   
-  for(i=375;i<=700;i++){
-      checkele = document.elementFromPoint(i, j);
-      checkele.style.backgroundColor="grey";
-      checkele.style.border="none";
-  }
+  // for(i=375;i<=700;i++){
+  //     checkele = document.elementFromPoint(i, j);
+  //     checkele.style.backgroundColor="grey";
+  //     checkele.style.border="none";
+  // }
 
 
 console.log(boundaryTop)
@@ -626,14 +721,21 @@ console.log(boundaryTop)
          console.log(k, i)
          checkelem = document.elementFromPoint(k, i);
          checkbg = checkelem.style.backgroundColor;
-         if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"){
-         console.log("red")
+         if(checkbg=="grey"){
+            console.log("grey")
+            mv=i+25;
+            checkelem = document.elementFromPoint(k, mv);
+            checkelem.style.backgroundColor="grey";
+            checkelem.style.border="none";
+            $("#boundary").css({"border-style":"solid", "border-width":"5px", "border-color":"black"})
+         }
+         else{
 
             mv=i+25;
             mv = mv+"px";
             // console.log(mv)
             checkelem.style.top=mv;
-         }
+        }    
     }
   }
 }  
