@@ -14,6 +14,7 @@ body{
 	float: left;
 	margin-left: 370px;
 	/*background-color: blue;*/
+	overflow: hidden;
 }
 #next-block{
 	border-width: 10px;
@@ -100,21 +101,32 @@ body{
 
 .l1, .l2, .l3, .l4{
 	position: absolute;
+	visibility: hidden;
+
 }
 .square1, .square2, .square3, .square4{
 	position: absolute;
+	visibility: hidden;
 }
 .horizontal-rectangle1, .horizontal-rectangle2, .horizontal-rectangle3, .horizontal-rectangle4{
 	position: absolute;
+	visibility: hidden;
+
 }
 .vertical-rectangle1, .vertical-rectangle2, .vertical-rectangle3, .vertical-rectangle4{
 	position: absolute;
+	visibility: hidden;
+
 }
 .horizontal-zigzag1, .horizontal-zigzag2, .horizontal-zigzag3, .horizontal-zigzag4{
 	position: absolute;
+	visibility: hidden;
+
 }
 .vertical-zigzag1, .vertical-zigzag2, .vertical-zigzag3, .vertical-zigzag4{
 	position: absolute;
+	visibility: hidden;
+	
 }
 
 .l1-next, .l2-next, .l3-next, .l4-next{

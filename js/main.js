@@ -69,6 +69,9 @@ function moveDown(){
     currentTop=childEle4.position().top;
     currentLeft=childEle4.position().left;
     currentTop+=25;
+    if(currentTop>=boundaryTop){
+      childEle4.css("visibility", "visible");
+    }
     z = checkEnd(currentLeft, currentTop);
     if(z==1){return;}
     y = checkBelow(currentLeft, currentTop)
@@ -86,6 +89,10 @@ function moveDown(){
     currentTop=childEle3.position().top;
     currentLeft=childEle3.position().left;
     currentTop+=25;
+        if(currentTop>=boundaryTop){
+      childEle3.css("visibility", "visible");
+
+    }
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
                currentTop4=childEle4.position().top;
@@ -103,6 +110,9 @@ function moveDown(){
     currentTop=childEle2.position().top;
     currentLeft=childEle2.position().left;
     currentTop+=25;
+        if(currentTop>=boundaryTop){
+      childEle2.css("visibility", "visible");
+    }
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
                currentTop4=childEle4.position().top;
@@ -123,6 +133,9 @@ function moveDown(){
     currentTop=childEle1.position().top;
     currentLeft=childEle1.position().left;
     currentTop+=25;
+        if(currentTop>=boundaryTop){
+      childEle1.css("visibility", "visible");
+    }
     y = checkBelow(currentLeft, currentTop)
     if(y==1){
                currentTop4=childEle4.position().top;
@@ -315,6 +328,8 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "square2", class:"square2 brick"});
 		 childEle3 = $("<div>", {id: "square3", class:"square3 brick"});
 		 childEle4 = $("<div>", {id: "square4", class:"square4 brick"});
+    
+    boundaryTop-=50;
 
 		$("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
@@ -335,7 +350,8 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "horizontal-rectangle2", class:"horizontal-rectangle2 brick"});
 		 childEle3 = $("<div>", {id: "horizontal-rectangle3", class:"horizontal-rectangle3 brick"});
 		 childEle4 = $("<div>", {id: "horizontal-rectangle4", class:"horizontal-rectangle4 brick"});
-		$("body").append(childEle1);
+    boundaryTop-=25;
+    $("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
 		$("body").append(childEle2);
 		randomXPos+=25;
@@ -354,7 +370,9 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "vertical-rectangle2", class:"vertical-rectangle2 brick"});
 		 childEle3 = $("<div>", {id: "vertical-rectangle3", class:"vertical-rectangle3 brick"});
 		 childEle4 = $("<div>", {id: "vertical-rectangle4", class:"vertical-rectangle4 brick"});
-        $("body").append(childEle1);
+    boundaryTop-=100;
+    
+    $("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
 		$("body").append(childEle2);
 		boundaryTop+=25;
@@ -372,7 +390,9 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "l2", class:"l2 brick"});
 		 childEle3 = $("<div>", {id: "l3", class:"l3 brick"});
 		 childEle4 = $("<div>", {id: "l4", class:"l4 brick"});
-		$("body").append(childEle1);
+    boundaryTop-=75;
+		
+    $("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
 		$("body").append(childEle2);
 		boundaryTop+=25;
@@ -392,7 +412,9 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "horizontal-zigzag2", class:"horizontal-zigzag2 brick"});
 		 childEle3 = $("<div>", {id: "horizontal-zigzag3", class:"horizontal-zigzag3 brick"});
 		 childEle4 = $("<div>", {id: "horizontal-zigzag4", class:"horizontal-zigzag4 brick"});
-		$("body").append(childEle1);
+    boundaryTop-=50;
+		
+    $("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
 		$("body").append(childEle2);
 		randomXPos+=25;
@@ -411,7 +433,9 @@ function createElement(random){
 		 childEle2 = $("<div>", {id: "vertical-zigzag2", class:"vertical-zigzag2 brick"});
 		 childEle3 = $("<div>", {id: "vertical-zigzag3", class:"vertical-zigzag3 brick"});
 		 childEle4 = $("<div>", {id: "vertical-zigzag4", class:"vertical-zigzag4 brick"});
-		$("body").append(childEle1);
+    boundaryTop-=75;
+		
+    $("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
 		$("body").append(childEle2);
 		boundaryTop+=25;
@@ -510,6 +534,9 @@ maxX = boundaryLeft + boxWidth;
 
 function checkBelow(left, top){
     // if(currentRandonNumber == 0){
+  boundaryTop = document.getElementById("boundary").offsetTop;
+
+            if(top>boundaryTop){
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
             if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"){
@@ -518,6 +545,7 @@ function checkBelow(left, top){
        	       // generateNextBlock();
        	       return 1;
     	    }
+         } 
       // }
     // else if(currentRandonNumber == 1){
     // 	// top+=25;
@@ -637,7 +665,7 @@ function checkLeft(left, top){
 
 function checkEnd(currentLeft, currentTop){
   if(currentRandonNumber == 0){
-         if((currentTop+25) >= (boundaryTop+boxHeight)){
+         if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
           generateNextBlock();
@@ -655,7 +683,7 @@ function checkEnd(currentLeft, currentTop){
        
   }
   else if(currentRandonNumber == 2){
-       if((currentTop+75) >= (boundaryTop+boxHeight)){
+       if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
 
@@ -665,7 +693,7 @@ function checkEnd(currentLeft, currentTop){
        
   }
   else if(currentRandonNumber == 3){
-       if((currentTop+50) >= (boundaryTop+boxHeight)){
+       if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
 
@@ -675,7 +703,7 @@ function checkEnd(currentLeft, currentTop){
        
   }
   else if(currentRandonNumber == 4){
-       if((currentTop+25) >= (boundaryTop+boxHeight)){
+       if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
 
@@ -685,7 +713,7 @@ function checkEnd(currentLeft, currentTop){
 
   }
   else if(currentRandonNumber == 5){
-       if((currentTop+50) >= (boundaryTop+boxHeight)){
+       if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
 
@@ -758,9 +786,10 @@ console.log(boundaryTop)
 function checkGameOver(){
   topend = $("#boundary").css("margin-top")
   blockTop = childEle1.position().top;
-  blockTop += "px";
-  console.log(blockTop, topend)
-  if(blockTop<=(topend+5)){
+  // blockTop += "px";
+  topend = topend.split("px")
+  console.log(blockTop, topend[0])
+  if(blockTop<=(topend[0])){
     console.log("game over")
     game = false;
   }
