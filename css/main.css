@@ -1,6 +1,7 @@
 body{
 	position: absolute;
 	width: 100%;
+	overflow: hidden;
 }
 #boundary{
 	border-color: black;
@@ -9,7 +10,7 @@ body{
 	width: 360px;
 	height: 555px;
 	/*margin: auto;*/
-	margin-top: 8%;
+	margin-top: 100px;
 	float: left;
 	margin-left: 370px;
 	/*background-color: blue;*/
@@ -135,4 +136,40 @@ body{
 }
 .vertical-zigzag1-next, .vertical-zigzag2-next, .vertical-zigzag3-next, .vertical-zigzag4-next{
 	background-color: orange;
+}
+
+#boundary{
+	position: relative;
+}
+.divider{
+/*	height: 500px;
+	border-width: 1px;
+	border-style: dashed;
+	border-color: black;*/
+	/*position: absolute;
+	left: 50px;*/
+	border-left:1px dashed #000;
+	height:500px;
+	position: absolute;
+}
+.vr1{
+	left: 26px;
+}
+.vr2{
+	left: 26px;
+}
+.vr3{
+	left: 26px;
+}
+.vr4{
+	left: 26px;
+}
+.vr5{
+	left: 26px;
+}
+.vr6{
+	left: 26px;
+}
+.vr7{
+	left: 26px;
 }

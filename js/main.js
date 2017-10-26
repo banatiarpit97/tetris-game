@@ -12,6 +12,7 @@ nextEle.removeClass("hidden").css({"top":250, "left":885});
 
 var boundaryTop = document.getElementById("boundary").offsetTop;
 var boundaryLeft = document.getElementById("boundary").offsetLeft;
+var marginTop = $("#boundary").css("margin-top");
 
 var boxWidth = $("#boundary").width();
 var boxHeight = $("#boundary").height();
@@ -28,6 +29,7 @@ var childEle3;
 var childEle4;
 var interval;
 var children;
+var game = true;
 document.getElementById("boundary").style.backgroundColor = "grey";
 
 // e = "#"+randomArray[nextRandonNumber];
@@ -41,23 +43,25 @@ document.getElementById("boundary").style.backgroundColor = "grey";
 
 
 function generateNextBlock(){
-	currentRandonNumber = nextRandonNumber;
-	nextRandonNumber = Math.floor(Math.random()*6);
-	nextRandomId = "#"+randomArray[nextRandonNumber]; 
-	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next").addClass("hidden");
-	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
-    // $("#next-block").html("");
-    // nextEle = $(nextRandomId);
-    // $("#next-block").html(nextEle);
+  if(game){
+  	currentRandonNumber = nextRandonNumber;
+  	nextRandonNumber = Math.floor(Math.random()*6);
+  	nextRandomId = "#"+randomArray[nextRandonNumber]; 
+  	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next").addClass("hidden");
+  	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
+      // $("#next-block").html("");
+      // nextEle = $(nextRandomId);
+      // $("#next-block").html(nextEle);
 
-    // currentRandonNumber = 3;
+      // currentRandonNumber = 3;
 
-	randomXPos = randomX(currentRandonNumber);
+  	randomXPos = randomX(currentRandonNumber);
 
-	createElement(currentRandonNumber);
-	// console.log(randomXPos)
-    // $(currentRandomId).removeClass("hidden").css({"top": boundaryTop, "left":randomXPos});
-    interval = setInterval(moveDown, 200)
+  	createElement(currentRandonNumber);
+  	// console.log(randomXPos)
+      // $(currentRandomId).removeClass("hidden").css({"top": boundaryTop, "left":randomXPos});
+      interval = setInterval(moveDown, 200)
+  }  
 }
 
 function moveDown(){
@@ -72,6 +76,7 @@ function moveDown(){
                
                clearInterval(interval);
                checkCompleteRow(top);
+               checkGameOver();
                generateNextBlock();
       return;}
     childEle4.css("top", currentTop);
@@ -89,6 +94,7 @@ function moveDown(){
 
                clearInterval(interval);
                checkCompleteRow(top);
+               checkGameOver();
                generateNextBlock();
       return;}
     childEle3.css("top", currentTop);
@@ -109,6 +115,7 @@ function moveDown(){
 
                clearInterval(interval);
                checkCompleteRow(top);
+               checkGameOver();
                generateNextBlock();
       return;}
     childEle2.css("top", currentTop);
@@ -132,6 +139,7 @@ function moveDown(){
                
                clearInterval(interval);
                checkCompleteRow(top);
+               checkGameOver();
                generateNextBlock();
       return;}
     childEle1.css("top", currentTop);
@@ -301,13 +309,13 @@ function moveLeft(){
 
 function createElement(random){
 	boundaryTop = document.getElementById("boundary").offsetTop;
-
 	if(random == 0){
 		 // $ele = $("<div>", {id: "square"});
 		 childEle1 = $("<div>", {id: "square1", class:"square1 brick"});
 		 childEle2 = $("<div>", {id: "square2", class:"square2 brick"});
 		 childEle3 = $("<div>", {id: "square3", class:"square3 brick"});
 		 childEle4 = $("<div>", {id: "square4", class:"square4 brick"});
+
 		$("body").append(childEle1);
 		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
 		$("body").append(childEle2);
@@ -600,9 +608,14 @@ function checkBelow(left, top){
 
 function checkRight(left, top){
     // if(currentRandonNumber == 0){
+            boundaryLeft = document.getElementById("boundary").offsetLeft;
+            boxWidth = $("#boundary").width();
+            maxX = boundaryLeft + boxWidth;
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg==""){
+            console.log(bg)
+
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||left>maxX){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -611,9 +624,11 @@ function checkRight(left, top){
 
 function checkLeft(left, top){
     // if(currentRandonNumber == 0){
+            boundaryLeft = document.getElementById("boundary").offsetLeft;
+            minX = boundaryLeft;
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg==""){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||left<minX){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -739,6 +754,17 @@ console.log(boundaryTop)
     }
   }
 }  
+
+function checkGameOver(){
+  topend = $("#boundary").css("margin-top")
+  blockTop = childEle1.position().top;
+  blockTop += "px";
+  console.log(blockTop, topend)
+  if(blockTop<=(topend+5)){
+    console.log("game over")
+    game = false;
+  }
+}
 // generateNextBlock();
 
 //  interval = setInterval(moveDown, 250);
