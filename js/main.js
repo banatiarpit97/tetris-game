@@ -1,6 +1,6 @@
-var randomArray = ["square-next", "horizontal-rectangle-next", "vertical-rectangle-next", "l-next", "horizontal-zigzag-next", "vertical-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next"];
+var randomArray = ["square-next", "horizontal-rectangle-next", "vertical-rectangle-next", "l-next", "horizontal-zigzag-next", "vertical-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next", "t-next"];
 var currentRandonNumber;
-var nextRandonNumber = Math.floor(Math.random()*8);
+var nextRandonNumber = Math.floor(Math.random()*9);
 // console.log(nextRandonNumber)
 
 var currentRandomId; 
@@ -46,21 +46,22 @@ generateNextBlock();
 function generateNextBlock(){
   if(game){
   	currentRandonNumber = nextRandonNumber;
-  	nextRandonNumber = Math.floor(Math.random()*8);
+  	nextRandonNumber = Math.floor(Math.random()*9);
   	nextRandomId = "#"+randomArray[nextRandonNumber]; 
-  	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next").addClass("hidden");
+  	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
   	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
       // $("#next-block").html("");
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      // currentRandonNumber = 3;
+      currentRandonNumber = 6;
 
   	randomXPos = randomX(currentRandonNumber);
 
   	createElement(currentRandonNumber);
   	// console.log(randomXPos)
       // $(currentRandomId).removeClass("hidden").css({"top": boundaryTop, "left":randomXPos});
+      
       interval = setInterval(moveDown, 200)
   }  
 }
@@ -589,7 +590,7 @@ function createElement(random){
 
 	}
   else if(random == 6){
-     $e = $("<div>", {id: "l"});
+     // $e = $("<div>", {id: "inverted-l"});
      childEle1 = $("<div>", {id: "inverted-l1", class:"inverted-l1 brick"});
      childEle2 = $("<div>", {id: "inverted-l2", class:"inverted-l2 brick"});
      childEle3 = $("<div>", {id: "inverted-l3", class:"inverted-l3 brick"});
@@ -608,6 +609,10 @@ function createElement(random){
     $("body").append(childEle4);
     randomXPos-=25;
     childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    // $("body").append($e);
+    // $e.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+
+
   }
 
   else if(random == 7){
@@ -631,6 +636,29 @@ function createElement(random){
     randomXPos-=25;
     childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
 }
+    else if(random == 8){
+     // $ele = $("<div>", {id: "l"});
+     childEle1 = $("<div>", {id: "t1", class:"t1 brick"});
+     childEle2 = $("<div>", {id: "t2", class:"t2 brick"});
+     childEle3 = $("<div>", {id: "t3", class:"t3 brick"});
+     childEle4 = $("<div>", {id: "t4", class:"t4 brick"});
+    boundaryTop-=50;
+    
+    $("body").append(childEle1);
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    $("body").append(childEle2);
+    randomXPos+=25;
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    $("body").append(childEle3);
+    randomXPos+=25;
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    $("body").append(childEle4);
+    randomXPos-=25;
+    boundaryTop+=25;
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+
+
+  }
 
   
 // document.getElementsByClassName("brick").style.backgroundColor = "red";
@@ -704,6 +732,9 @@ maxX = boundaryLeft + boxWidth;
   else if(random == 7){
        maxX = maxX-75;
   }
+  else if(random == 8){
+       maxX = maxX-75;
+  }
     xpos =  (Math.floor((Math.random()*(maxX-minX+1)+minX)/25)*25);
     return xpos;
 
@@ -727,7 +758,7 @@ function checkBelow(left, top){
             if(top>boundaryTop){
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg=="aqua"){
        	       // clearInterval(interval);
                // checkCompleteRow(top);
        	       // generateNextBlock();
@@ -831,7 +862,7 @@ function checkRight(left, top){
             bg = elem.style.backgroundColor;
             console.log(bg)
 
-            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||left>maxX){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg=="aqua"||left>maxX){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -844,7 +875,7 @@ function checkLeft(left, top){
             minX = boundaryLeft;
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||left<minX){
+            if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg=="aqua"||left<minX){
                // clearInterval(interval);
                // generateNextBlock();
                return 1;
@@ -948,7 +979,7 @@ function checkCompleteRow(top){
         // console.log(i, j)
          checkele = document.elementFromPoint(i, j);
          checkbg = checkele.style.backgroundColor;
-         if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"){
+         if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"||bg=="aqua"){
             count++;
          }
          else if(checkbg == "grey"){

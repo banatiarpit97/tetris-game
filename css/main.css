@@ -56,6 +56,18 @@ body{
 	height: 75px;
 	width: 50px;
 }
+#t-next{
+	height: 50px;
+	width: 75px;
+	position: absolute;
+}
+.t1-next, .t2-next, .t3-next{
+	float: left;
+}
+.t4-next{
+	margin-top: 25px !important;
+	margin-left: 25px !important;
+}
 .l3-next, .l4-next{
     float: left;
 }
@@ -133,6 +145,13 @@ body{
 	position: absolute;
 	visibility: hidden;
 }
+.t1, .t2, .t3, .t4{
+	position: absolute;
+	visibility: hidden;
+}
+#inverted-l{
+	position: absolute;
+}
 .inverted-l1, .inverted-l2, .inverted-l3, .inverted-l4{
 	position: absolute;
 	visibility: hidden;
@@ -168,6 +187,9 @@ body{
 
 .l1-next, .l2-next, .l3-next, .l4-next{
 	background-color: magenta;
+}
+.t1-next, .t2-next, .t3-next, .t4-next{
+	background-color: aqua;
 }
 .inverted-l1-next, .inverted-l2-next, .inverted-l3-next, .inverted-l4-next{
 	background-color: magenta;
