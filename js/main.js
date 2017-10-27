@@ -1,6 +1,6 @@
-var randomArray = ["square-next", "horizontal-rectangle-next", "vertical-rectangle-next", "l-next", "horizontal-zigzag-next", "vertical-zigzag-next"];
+var randomArray = ["square-next", "horizontal-rectangle-next", "vertical-rectangle-next", "l-next", "horizontal-zigzag-next", "vertical-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next"];
 var currentRandonNumber;
-var nextRandonNumber = Math.floor(Math.random()*6);
+var nextRandonNumber = Math.floor(Math.random()*8);
 // console.log(nextRandonNumber)
 
 var currentRandomId; 
@@ -30,6 +30,7 @@ var childEle4;
 var interval;
 var children;
 var game = true;
+var score = 0;
 document.getElementById("boundary").style.backgroundColor = "grey";
 
 // e = "#"+randomArray[nextRandonNumber];
@@ -40,14 +41,14 @@ document.getElementById("boundary").style.backgroundColor = "grey";
 // $("#boundary").html(el)
 
 
-
+generateNextBlock();
 
 function generateNextBlock(){
   if(game){
   	currentRandonNumber = nextRandonNumber;
-  	nextRandonNumber = Math.floor(Math.random()*6);
+  	nextRandonNumber = Math.floor(Math.random()*8);
   	nextRandomId = "#"+randomArray[nextRandonNumber]; 
-  	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next").addClass("hidden");
+  	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next").addClass("hidden");
   	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
       // $("#next-block").html("");
       // nextEle = $(nextRandomId);
@@ -78,6 +79,7 @@ function moveDown(){
     if(y==1){
                
                clearInterval(interval);
+               score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
@@ -100,6 +102,7 @@ function moveDown(){
                childEle4.css("top", currentTop4);
 
                clearInterval(interval);
+               score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
@@ -124,6 +127,7 @@ function moveDown(){
                childEle3.css("top", currentTop3);
 
                clearInterval(interval);
+               score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
@@ -151,6 +155,7 @@ function moveDown(){
                childEle2.css("top", currentTop2);
                
                clearInterval(interval);
+               score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
@@ -181,6 +186,74 @@ function moveDown(){
 }
 
 function moveRight(){
+
+    if(currentRandonNumber == 6||currentRandonNumber == 7){
+            currentTop=childEle1.position().top;
+            currentLeft=childEle1.position().left;
+            currentLeft+=25;
+            w = checkRight(currentLeft, currentTop)
+            if(w==1){
+              return;
+            }
+            else{
+              childEle1.css("left", currentLeft);
+            }
+
+            currentTop=childEle2.position().top;
+            currentLeft=childEle2.position().left;
+            currentLeft+=25;
+            w = checkRight(currentLeft, currentTop)
+            if(w==1){
+              currentLeft1=childEle1.position().left;
+              currentLeft1-=25;
+              childEle1.css("left", currentLeft1);
+              return;
+            }
+            else{
+              childEle2.css("left", currentLeft);
+            }
+
+            currentTop=childEle3.position().top;
+            currentLeft=childEle3.position().left;
+            currentLeft+=25;
+            w = checkRight(currentLeft, currentTop)
+            if(w==1){
+              currentLeft1=childEle1.position().left;
+              currentLeft1-=25;
+              childEle1.css("left", currentLeft1);
+
+              currentLeft2=childEle2.position().left;
+              currentLeft2-=25;
+              childEle2.css("left", currentLeft2);
+              return;
+            }
+            else{
+              childEle3.css("left", currentLeft);
+            }
+
+            currentTop=childEle4.position().top;
+            currentLeft=childEle4.position().left;
+            currentLeft+=25;
+            w = checkRight(currentLeft, currentTop)
+            if(w==1){
+              currentLeft1=childEle1.position().left;
+              currentLeft1-=25;
+              childEle1.css("left", currentLeft1);
+
+              currentLeft2=childEle2.position().left;
+              currentLeft2-=25;
+              childEle2.css("left", currentLeft2);
+
+              currentLeft3=childEle3.position().left;
+              currentLeft3-=25;
+              childEle3.css("left", currentLeft3);
+              return;
+              return;}
+            else{
+              childEle4.css("left", currentLeft);
+            }
+    }
+
 
     currentTop=childEle4.position().top;
     currentLeft=childEle4.position().left;
@@ -250,6 +323,73 @@ function moveRight(){
 }  
 
 function moveLeft(){
+
+    if(currentRandonNumber == 6||currentRandonNumber == 7){
+            currentTop=childEle4.position().top;
+            currentLeft=childEle4.position().left;
+            currentLeft-=25;
+            x = checkLeft(currentLeft, currentTop)
+            if(x==1){
+              
+              return;}
+            else{
+              childEle4.css("left", currentLeft);
+            }
+
+            currentTop=childEle3.position().top;
+            currentLeft=childEle3.position().left;
+            currentLeft-=25;
+            x = checkLeft(currentLeft, currentTop)
+            if(x==1){
+              currentLeft4=childEle4.position().left;
+              currentLeft4+=25;
+              childEle4.css("left", currentLeft4);
+              return;
+            }
+            else{
+              childEle3.css("left", currentLeft);
+            }
+
+            currentTop=childEle2.position().top;
+            currentLeft=childEle2.position().left;
+            currentLeft-=25;
+            x = checkLeft(currentLeft, currentTop)
+            if(x==1){
+              currentLeft4=childEle4.position().left;
+              currentLeft4+=25;
+              childEle4.css("left", currentLeft4);
+
+              currentLeft3=childEle3.position().left;
+              currentLeft3+=25;
+              childEle3.css("left", currentLeft3);
+              return;
+            }
+            else{
+              childEle2.css("left", currentLeft);
+            }
+
+            currentTop=childEle1.position().top;
+            currentLeft=childEle1.position().left;
+            currentLeft-=25;
+            x = checkLeft(currentLeft, currentTop)
+            if(x==1){
+              currentLeft4=childEle4.position().left;
+              currentLeft4+=25;
+              childEle4.css("left", currentLeft4);
+
+              currentLeft3=childEle3.position().left;
+              currentLeft3+=25;
+              childEle3.css("left", currentLeft3);
+
+              currentLeft2=childEle2.position().left;
+              currentLeft2+=25;
+              childEle2.css("left", currentLeft2);
+              return;
+            }
+            else{
+              childEle1.css("left", currentLeft);
+            }
+    }
 
     currentTop=childEle1.position().top;
     currentLeft=childEle1.position().left;
@@ -448,7 +588,51 @@ function createElement(random){
 		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
 
 	}
+  else if(random == 6){
+     $e = $("<div>", {id: "l"});
+     childEle1 = $("<div>", {id: "inverted-l1", class:"inverted-l1 brick"});
+     childEle2 = $("<div>", {id: "inverted-l2", class:"inverted-l2 brick"});
+     childEle3 = $("<div>", {id: "inverted-l3", class:"inverted-l3 brick"});
+     childEle4 = $("<div>", {id: "inverted-l4", class:"inverted-l4 brick"});
+    boundaryTop-=75;
+    randomXPos+=25;
+    
+    $("body").append(childEle1);
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    $("body").append(childEle2);
+    boundaryTop+=25;
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    $("body").append(childEle3);
+    boundaryTop+=25;
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    $("body").append(childEle4);
+    randomXPos-=25;
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+  }
 
+  else if(random == 7){
+     // $ele = $("<div>", {id: "horizontal-zigzag"});
+     childEle1 = $("<div>", {id: "inverted-horizontal-zigzag1", class:"inverted-horizontal-zigzag1 brick"});
+     childEle2 = $("<div>", {id: "inverted-horizontal-zigzag2", class:"inverted-horizontal-zigzag2 brick"});
+     childEle3 = $("<div>", {id: "inverted-horizontal-zigzag3", class:"inverted-horizontal-zigzag3 brick"});
+     childEle4 = $("<div>", {id: "inverted-horizontal-zigzag4", class:"inverted-horizontal-zigzag4 brick"});
+    boundaryTop-=50;
+    randomXPos+=75;
+    
+    $("body").append(childEle1);
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    $("body").append(childEle2);
+    randomXPos-=25;
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    $("body").append(childEle3);
+    boundaryTop+=25;
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    $("body").append(childEle4);
+    randomXPos-=25;
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+}
+
+  
 // document.getElementsByClassName("brick").style.backgroundColor = "red";
     
 	// $("body").append($ele)
@@ -458,7 +642,6 @@ function createElement(random){
     // console.log(currentRandomId,nextRandomId, boundaryTop, randomXPos)
 
 }
-generateNextBlock();
 
 $(document).keydown(function(e){
 	if(e.keyCode == '40'){
@@ -515,9 +698,14 @@ maxX = boundaryLeft + boxWidth;
        maxX = maxX-50;
 
 	}
+  else if(random == 6){
+       maxX = maxX-50;    
+  }
+  else if(random == 7){
+       maxX = maxX-75;
+  }
     xpos =  (Math.floor((Math.random()*(maxX-minX+1)+minX)/25)*25);
     return xpos;
-
 
 }
 // function randomX(){
@@ -664,64 +852,92 @@ function checkLeft(left, top){
 }         
 
 function checkEnd(currentLeft, currentTop){
-  if(currentRandonNumber == 0){
+
          if((currentTop) >= (boundaryTop+boxHeight)){
           clearInterval(interval);
           checkCompleteRow(currentTop);
           generateNextBlock();
           return 1;
           }
-    }
-  else if(currentRandonNumber == 1){
-       if((currentTop) >= (boundaryTop+boxHeight)){
-          clearInterval(interval);
-          checkCompleteRow(currentTop);
 
-          generateNextBlock();
-          return 1;
-          }
+  // if(currentRandonNumber == 0){
+  //        if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
+  //         generateNextBlock();
+  //         return 1;
+  //         }
+  //   }
+  // else if(currentRandonNumber == 1){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
+
+  //         generateNextBlock();
+  //         return 1;
+  //         }
        
-  }
-  else if(currentRandonNumber == 2){
-       if((currentTop) >= (boundaryTop+boxHeight)){
-          clearInterval(interval);
-          checkCompleteRow(currentTop);
+  // }
+  // else if(currentRandonNumber == 2){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
 
-          generateNextBlock();
-          return 1;
-          }
+  //         generateNextBlock();
+  //         return 1;
+  //         }
        
-  }
-  else if(currentRandonNumber == 3){
-       if((currentTop) >= (boundaryTop+boxHeight)){
-          clearInterval(interval);
-          checkCompleteRow(currentTop);
+  // }
+  // else if(currentRandonNumber == 3){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
 
-          generateNextBlock();
-          return 1;
-          }
+  //         generateNextBlock();
+  //         return 1;
+  //         }
        
-  }
-  else if(currentRandonNumber == 4){
-       if((currentTop) >= (boundaryTop+boxHeight)){
-          clearInterval(interval);
-          checkCompleteRow(currentTop);
+  // }
+  // else if(currentRandonNumber == 4){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
 
-          generateNextBlock();
-          return 1;
-          }
+  //         generateNextBlock();
+  //         return 1;
+  //         }
 
-  }
-  else if(currentRandonNumber == 5){
-       if((currentTop) >= (boundaryTop+boxHeight)){
-          clearInterval(interval);
-          checkCompleteRow(currentTop);
+  // }
+  // else if(currentRandonNumber == 5){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
 
-          generateNextBlock();
-          return 1;
-          }
+  //         generateNextBlock();
+  //         return 1;
+  //         }
 
-  } 
+  // } 
+  // else if(currentRandonNumber == 6){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
+
+  //         generateNextBlock();
+  //         return 1;
+  //         }
+       
+  // }
+  // else if(currentRandonNumber == 7){
+  //      if((currentTop) >= (boundaryTop+boxHeight)){
+  //         clearInterval(interval);
+  //         checkCompleteRow(currentTop);
+
+  //         generateNextBlock();
+  //         return 1;
+  //         }
+       
+  // }
 }
 
 function checkCompleteRow(top){
@@ -765,7 +981,6 @@ console.log(boundaryTop)
          checkelem = document.elementFromPoint(k, i);
          checkbg = checkelem.style.backgroundColor;
          if(checkbg=="grey"){
-            console.log("grey")
             mv=i+25;
             checkelem = document.elementFromPoint(k, mv);
             checkelem.style.backgroundColor="grey";
@@ -781,6 +996,7 @@ console.log(boundaryTop)
         }    
     }
   }
+  score+=100;
 }  
 
 function checkGameOver(){

@@ -31,7 +31,7 @@ body{
 	margin-left: 165px;
 	margin-top: 150px;
 }
-#square, #horizontal-rectangle, #vertical-rectangle, #l, #horizontal-zigzag, #vertical-zigzag, #square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next{
+#square, #horizontal-rectangle, #vertical-rectangle, #l, #horizontal-zigzag, #vertical-zigzag, #square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next, #inverted-l-next{
 	position: absolute;
 }
 #square, #square-next{
@@ -52,16 +52,34 @@ body{
 #vertical-rectangle,#vertical-rectangle-next {
 	height: 100px;
 }
-#l, #l-next{
+#l, #l-next,#inverted-l-next{
 	height: 75px;
 	width: 50px;
 }
 .l3-next, .l4-next{
     float: left;
 }
+.inverted-l1-next, .inverted-l2-next, .inverted-l3-next{
+	margin-left: 25px !important;
+	float: right;
+}
+.inverted-l2-next{
+	clear: both;
+}
+.inverted-l4-next{
+	float: left;
+	margin-top: -25px !important;
+}
 #horizontal-zigzag, #horizontal-zigzag-next{
 	height: 50px;
 	width: 75px;
+	/*position: absolute;*/
+}
+
+#inverted-horizontal-zigzag-next{
+	height: 50px;
+	width: 75px;
+	position: absolute;
 }
 .horizontal-zigzag1-next, .horizontal-zigzag2-next, .horizontal-zigzag3-next, .horizontal-zigzag4-next{
     float: left;
@@ -75,6 +93,18 @@ body{
 }
 .horizontal-zigzag3-next{
 	margin-left: 25px !important;
+}
+.inverted-horizontal-zigzag1-next, .inverted-horizontal-zigzag2-next, .inverted-horizontal-zigzag3-next, .inverted-horizontal-zigzag4-next{
+    float: right;
+}
+.inverted-horizontal-zigzag3-next{
+	clear: both;
+}
+.inverted-horizontal-zigzag3-next, .inverted-horizontal-zigzag4-next{
+	margin-top: 25px;
+}
+.inverted-horizontal-zigzag3-next{
+	margin-right: 25px !important;
 }
 
 #vertical-zigzag, #vertical-zigzag-next{
@@ -102,6 +132,10 @@ body{
 .l1, .l2, .l3, .l4{
 	position: absolute;
 	visibility: hidden;
+}
+.inverted-l1, .inverted-l2, .inverted-l3, .inverted-l4{
+	position: absolute;
+	visibility: hidden;
 
 }
 .square1, .square2, .square3, .square4{
@@ -121,7 +155,10 @@ body{
 .horizontal-zigzag1, .horizontal-zigzag2, .horizontal-zigzag3, .horizontal-zigzag4{
 	position: absolute;
 	visibility: hidden;
-
+}
+.inverted-horizontal-zigzag1, .inverted-horizontal-zigzag2, .inverted-horizontal-zigzag3, .inverted-horizontal-zigzag4{
+	position: absolute;
+	visibility: hidden;
 }
 .vertical-zigzag1, .vertical-zigzag2, .vertical-zigzag3, .vertical-zigzag4{
 	position: absolute;
@@ -130,6 +167,9 @@ body{
 }
 
 .l1-next, .l2-next, .l3-next, .l4-next{
+	background-color: magenta;
+}
+.inverted-l1-next, .inverted-l2-next, .inverted-l3-next, .inverted-l4-next{
 	background-color: magenta;
 }
 .square1-next, .square2-next, .square3-next, .square4-next{
@@ -144,7 +184,9 @@ body{
 }
 .horizontal-zigzag1-next, .horizontal-zigzag2-next, .horizontal-zigzag3-next, .horizontal-zigzag4-next{
 	background-color: blue;
-
+}
+.inverted-horizontal-zigzag1-next, .inverted-horizontal-zigzag2-next, .inverted-horizontal-zigzag3-next, .inverted-horizontal-zigzag4-next{
+	background-color: blue;
 }
 .vertical-zigzag1-next, .vertical-zigzag2-next, .vertical-zigzag3-next, .vertical-zigzag4-next{
 	background-color: orange;
