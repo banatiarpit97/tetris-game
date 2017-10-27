@@ -40,6 +40,38 @@ document.getElementById("boundary").style.backgroundColor = "grey";
 // // el.removeClass("hidden")
 // $("#boundary").html(el)
 
+var color;
+
+function blockColor(){
+   if(currentRandonNumber == 0){
+      color = "red";
+   }
+   else if(currentRandonNumber == 1){
+      color = "green";
+   }
+   else if(currentRandonNumber == 2){
+      color = "yellow";
+   }
+   else if(currentRandonNumber == 3){
+      color = "magenta";
+   }
+   else if(currentRandonNumber == 4){
+      color = "blue";
+   }
+   else if(currentRandonNumber == 5){
+      color = "orange";
+   }
+   else if(currentRandonNumber == 6){
+      color = "magenta";
+   }
+   else if(currentRandonNumber == 7){
+      color = "blue";
+   }
+   else if(currentRandonNumber == 8){
+      color = "aqua";
+   }
+};
+
 
 generateNextBlock();
 
@@ -54,7 +86,8 @@ function generateNextBlock(){
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      currentRandonNumber = 6;
+      // currentRandonNumber = 7;
+    blockColor();  
 
   	randomXPos = randomX(currentRandonNumber);
 
@@ -68,39 +101,40 @@ function generateNextBlock(){
 
 function moveDown(){
 
-    currentTop=childEle4.position().top;
-    currentLeft=childEle4.position().left;
-    currentTop+=25;
-    if(currentTop>=boundaryTop){
+    currentTo4=childEle4.position().top;
+    currentLef4=childEle4.position().left;
+    currentTo4+=25;
+    if(currentTo4>=boundaryTop){
       childEle4.css("visibility", "visible");
     }
-    z = checkEnd(currentLeft, currentTop);
+    z = checkEnd(currentLef4, currentTo4);
     if(z==1){return;}
-    y = checkBelow(currentLeft, currentTop)
+    y = checkBelow(currentLef4, currentTo4)
     if(y==1){
-               
                clearInterval(interval);
                score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
       return;}
-    childEle4.css("top", currentTop);
+      childEle4.css({"background-color":"grey"})
     // console.log(currentTop)
 
 
-    currentTop=childEle3.position().top;
-    currentLeft=childEle3.position().left;
-    currentTop+=25;
-        if(currentTop>=boundaryTop){
+    currentTo3=childEle3.position().top;
+    currentLef3=childEle3.position().left;
+    currentTo3+=25;
+        if(currentTo3>=boundaryTop){
       childEle3.css("visibility", "visible");
 
     }
-    y = checkBelow(currentLeft, currentTop)
+    y = checkBelow(currentLef3, currentTo3)
     if(y==1){
-               currentTop4=childEle4.position().top;
-               currentTop4-=25;
-               childEle4.css("top", currentTop4);
+               // currentTop4=childEle4.position().top;
+               // currentTop4-=25;
+               // childEle4.css("top", currentTop4);
+
+               childEle4.css({"background-color":color})
 
                clearInterval(interval);
                score+=10;
@@ -108,52 +142,58 @@ function moveDown(){
                checkGameOver();
                generateNextBlock();
       return;}
-    childEle3.css("top", currentTop);
+      childEle3.css({"background-color":"grey"})
+      
 
-
-    currentTop=childEle2.position().top;
-    currentLeft=childEle2.position().left;
-    currentTop+=25;
-        if(currentTop>=boundaryTop){
+    currentTo2=childEle2.position().top;
+    currentLef2=childEle2.position().left;
+    currentTo2+=25;
+        if(currentTo2>=boundaryTop){
       childEle2.css("visibility", "visible");
     }
-    y = checkBelow(currentLeft, currentTop)
+    y = checkBelow(currentLef2, currentTo2)
     if(y==1){
-               currentTop4=childEle4.position().top;
-               currentTop4-=25;
-               childEle4.css("top", currentTop4);
+               // currentTop4=childEle4.position().top;
+               // currentTop4-=25;
+               // childEle4.css("top", currentTop4);
 
-               currentTop3=childEle3.position().top;
-               currentTop3-=25;
-               childEle3.css("top", currentTop3);
-
+               // currentTop3=childEle3.position().top;
+               // currentTop3-=25;
+               // childEle3.css("top", currentTop3);
+               childEle4.css({"background-color":color})
+               childEle3.css({"background-color":color})
+ 
                clearInterval(interval);
                score+=10;
                checkCompleteRow(top);
                checkGameOver();
                generateNextBlock();
       return;}
-    childEle2.css("top", currentTop);
+      childEle2.css({"background-color":"grey"})
 
-    currentTop=childEle1.position().top;
-    currentLeft=childEle1.position().left;
-    currentTop+=25;
-        if(currentTop>=boundaryTop){
+
+    currentTo1=childEle1.position().top;
+    currentLef1=childEle1.position().left;
+    currentTo1+=25;
+        if(currentTo1>=boundaryTop){
       childEle1.css("visibility", "visible");
     }
-    y = checkBelow(currentLeft, currentTop)
+    y = checkBelow(currentLef1, currentTo1)
     if(y==1){
-               currentTop4=childEle4.position().top;
-               currentTop4-=25;
-               childEle4.css("top", currentTop4);
+               // currentTop4=childEle4.position().top;
+               // currentTop4-=25;
+               // childEle4.css("top", currentTop4);
 
-               currentTop3=childEle3.position().top;
-               currentTop3-=25;
-               childEle3.css("top", currentTop3);
+               // currentTop3=childEle3.position().top;
+               // currentTop3-=25;
+               // childEle3.css("top", currentTop3);
 
-               currentTop2=childEle2.position().top;
-               currentTop2-=25;
-               childEle2.css("top", currentTop2);
+               // currentTop2=childEle2.position().top;
+               // currentTop2-=25;
+               // childEle2.css("top", currentTop2);
+               childEle4.css({"background-color":color})
+               childEle3.css({"background-color":color})
+               childEle2.css({"background-color":color})
                
                clearInterval(interval);
                score+=10;
@@ -161,7 +201,21 @@ function moveDown(){
                checkGameOver();
                generateNextBlock();
       return;}
-    childEle1.css("top", currentTop);
+      childEle1.css({"background-color":"grey"})
+
+
+    childEle4.css("top", currentTo4);
+    childEle4.css({"background-color":color})
+
+    childEle3.css("top", currentTo3);
+    childEle3.css({"background-color":color})
+    
+    childEle2.css("top", currentTo2);
+    childEle2.css({"background-color":color})
+
+    childEle1.css("top", currentTo1);
+    childEle1.css({"background-color":color})
+
     
 
 
@@ -188,7 +242,7 @@ function moveDown(){
 
 function moveRight(){
 
-    if(currentRandonNumber == 6||currentRandonNumber == 7){
+    if((currentRandonNumber == 6)||(currentRandonNumber == 7 && state=="horizontal")||(currentRandonNumber == 4 && state=="vertical")){
             currentTop=childEle1.position().top;
             currentLeft=childEle1.position().left;
             currentLeft+=25;
@@ -256,76 +310,107 @@ function moveRight(){
     }
 
 
-    currentTop=childEle4.position().top;
-    currentLeft=childEle4.position().left;
-    currentLeft+=25;
-    x = checkRight(currentLeft, currentTop)
+    currentTo4=childEle4.position().top;
+    currentLef4=childEle4.position().left;
+    currentLef4+=25;
+    x = checkRight(currentLef4, currentTo4)
     if(x==1){
-      
-      return;}
-    else{
-      childEle4.css("left", currentLeft);
-    }
 
-    currentTop=childEle3.position().top;
-    currentLeft=childEle3.position().left;
-    currentLeft+=25;
-    x = checkRight(currentLeft, currentTop)
-    if(x==1){
-      currentLeft4=childEle4.position().left;
-      currentLeft4-=25;
-      childEle4.css("left", currentLeft4);
       return;
     }
-    else{
-      childEle3.css("left", currentLeft);
-    }
+    childEle4.css({"background-color":"grey"})
 
-    currentTop=childEle2.position().top;
-    currentLeft=childEle2.position().left;
-    currentLeft+=25;
-    x = checkRight(currentLeft, currentTop)
+    // else{
+    //   childEle4.css("left", currentLef4);
+    // }
+
+    currentTo3=childEle3.position().top;
+    currentLef3=childEle3.position().left;
+    currentLef3+=25;
+    x = checkRight(currentLef3, currentTo3)
     if(x==1){
-      currentLeft4=childEle4.position().left;
-      currentLeft4-=25;
-      childEle4.css("left", currentLeft4);
+      // currentLeft4=childEle4.position().left;
+      // currentLeft4-=25;
+      // childEle4.css("left", currentLeft4);
 
-      currentLeft3=childEle3.position().left;
-      currentLeft3-=25;
-      childEle3.css("left", currentLeft3);
+      childEle4.css({"background-color":color})
       return;
     }
-    else{
-      childEle2.css("left", currentLeft);
-    }
+      childEle3.css({"background-color":"grey"})
 
-    currentTop=childEle1.position().top;
-    currentLeft=childEle1.position().left;
-    currentLeft+=25;
-    x = checkRight(currentLeft, currentTop)
+    // else{
+    //   childEle3.css("left", currentLef3);
+    // }
+
+    currentTo2=childEle2.position().top;
+    currentLef2=childEle2.position().left;
+    currentLef2+=25;
+    x = checkRight(currentLef2, currentTo2)
     if(x==1){
-      currentLeft4=childEle4.position().left;
-      currentLeft4-=25;
-      childEle4.css("left", currentLeft4);
+      // currentLeft4=childEle4.position().left;
+      // currentLeft4-=25;
+      // childEle4.css("left", currentLeft4);
 
-      currentLeft3=childEle3.position().left;
-      currentLeft3-=25;
-      childEle3.css("left", currentLeft3);
+      // currentLeft3=childEle3.position().left;
+      // currentLeft3-=25;
+      // childEle3.css("left", currentLeft3);
 
-      currentLeft2=childEle2.position().left;
-      currentLeft2-=25;
-      childEle2.css("left", currentLeft2);
+      childEle4.css({"background-color":color})
+      childEle3.css({"background-color":color})
       return;
     }
-    else{
-      childEle1.css("left", currentLeft);
+      childEle2.css({"background-color":"grey"})
+
+    // else{
+    //   childEle2.css("left", currentLef2);
+    // }
+
+    currentTo1=childEle1.position().top;
+    currentLef1=childEle1.position().left;
+    currentLef1+=25;
+    x = checkRight(currentLef1, currentTo1)
+    if(x==1){
+      // currentLeft4=childEle4.position().left;
+      // currentLeft4-=25;
+      // childEle4.css("left", currentLeft4);
+
+      // currentLeft3=childEle3.position().left;
+      // currentLeft3-=25;
+      // childEle3.css("left", currentLeft3);
+
+      // currentLeft2=childEle2.position().left;
+      // currentLeft2-=25;
+      // childEle2.css("left", currentLeft2);
+
+      childEle4.css({"background-color":color})
+      childEle3.css({"background-color":color})
+      childEle2.css({"background-color":color})
+      return;
     }
+      childEle1.css({"background-color":"grey"})
+
+    // else{
+    //   childEle1.css("left", currentLef1);
+    // }
+
+    childEle4.css("left", currentLef4);
+    childEle4.css({"background-color":color})
+
+    childEle3.css("left", currentLef3);
+    childEle3.css({"background-color":color})
+
+    childEle2.css("left", currentLef2);
+    childEle2.css({"background-color":color})
+
+    childEle1.css("left", currentLef1);
+    childEle1.css({"background-color":color})
+
 
 }  
 
 function moveLeft(){
 
-    if(currentRandonNumber == 6||currentRandonNumber == 7){
+    if((currentRandonNumber == 6)||(currentRandonNumber == 7 && state=="horizontal")||(currentRandonNumber == 4 && state=="vertical")){
             currentTop=childEle4.position().top;
             currentLeft=childEle4.position().left;
             currentLeft-=25;
@@ -503,6 +588,7 @@ function createElement(random){
 		$("body").append(childEle4);
 		randomXPos+=25;
 		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
+    state = "horizontal";
 
 	}
 	else if(random == 2){
@@ -566,7 +652,8 @@ function createElement(random){
 		$("body").append(childEle4);
 		randomXPos+=25;
 		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
-
+    
+    state = "horizontal";
 	}
 		else if(random == 5){
 		 // $ele = $("<div>", {id: "vertical-zigzag"});
@@ -635,6 +722,8 @@ function createElement(random){
     $("body").append(childEle4);
     randomXPos-=25;
     childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    
+    state = "horizontal";
 }
     else if(random == 8){
      // $ele = $("<div>", {id: "l"});
@@ -698,6 +787,9 @@ $(document).keydown(function(e){
   //         $ele.css("left", currentLeft); 
   //       }
 	}
+  else if(e.keyCode == '38'){
+    rotate();
+  }
 });
 
 function randomX(random){
@@ -1039,6 +1131,178 @@ function checkGameOver(){
   if(blockTop<=(topend[0])){
     console.log("game over")
     game = false;
+  }
+}
+
+function rotate(){
+  if(currentRandonNumber == 1){
+    if(state == "horizontal"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1-=75;
+      // leftPos2-=75;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2-=50;
+      leftPos2-=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3-=25;
+      leftPos3-=50;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      // topPos4-=75;
+      leftPos4-=75;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "vertical";
+    }
+    else if(state == "vertical"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1+=75;
+      // leftPos1+=75;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2+=50;
+      leftPos2+=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3+=25;
+      leftPos3+=50;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      // topPos4+=75;
+      leftPos4+=75;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "horizontal";
+    }
+  }
+
+  else if(currentRandonNumber == 4){
+    if(state == "horizontal"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1-=50;
+      leftPos1+=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2-=25;
+      // leftPos2+=50;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3-=50;
+      leftPos3-=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      topPos4-=25;
+      leftPos4-=50;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "vertical";
+    }
+    else if(state == "vertical"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1+=50;
+      leftPos1-=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2+=25;
+      // leftPos2+=50;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3+=50;
+      leftPos3+=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      topPos4+=25;
+      leftPos4+=50;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "horizontal";
+    }
+  }
+    else if(currentRandonNumber == 7){
+    if(state == "horizontal"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1-=50;
+      leftPos1-=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2-=25;
+      // leftPos2+=50;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3-=50;
+      leftPos3+=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      topPos4-=25;
+      leftPos4+=50;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "vertical";
+    }
+    else if(state == "vertical"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1+=50;
+      leftPos1+=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2+=25;
+      // leftPos2+=50;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3+=50;
+      leftPos3-=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      topPos4+=25;
+      leftPos4-=50;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "horizontal";
+    }
   }
 }
 // generateNextBlock();
