@@ -86,7 +86,7 @@ function generateNextBlock(){
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      // currentRandonNumber = 7;
+      currentRandonNumber = 8;
     blockColor();  
 
   	randomXPos = randomX(currentRandonNumber);
@@ -745,7 +745,7 @@ function createElement(random){
     randomXPos-=25;
     boundaryTop+=25;
     childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
-
+    state = "horizontal1";
 
   }
 
@@ -1248,7 +1248,7 @@ function rotate(){
       state = "horizontal";
     }
   }
-    else if(currentRandonNumber == 7){
+  else if(currentRandonNumber == 7){
     if(state == "horizontal"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
@@ -1302,6 +1302,117 @@ function rotate(){
       childEle4.css({"top":topPos4, "left":leftPos4});
 
       state = "horizontal";
+    }
+  }
+
+  else if(currentRandonNumber == 8){
+    if(state == "horizontal1"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      topPos1-=25;
+      // leftPos1-=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      // topPos2-=25;
+      leftPos2-=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      // topPos3+=25;
+      leftPos3-=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      // topPos4-=25;
+      leftPos4-=25;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "vertical1";
+    }
+    else if(state == "vertical1"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      // topPos1+=50;
+      leftPos1+=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      // topPos2+=25;
+      // leftPos2+=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      // topPos3+=50;
+      // leftPos3+=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      topPos4-=25;
+      leftPos4+=50;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "horizontal2";
+    }
+    else if(state == "horizontal2"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      // topPos1+=25;
+      leftPos1-=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2-=50;
+      leftPos2+=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      topPos3-=25;
+      // leftPos3+=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      // topPos4+=25;
+      leftPos4-=25;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "vertical2";
+    }
+    else if(state == "vertical2"){
+      topPos1 = childEle1.position().top;
+      leftPos1 = childEle1.position().left;
+      // topPos1+=25;
+      // leftPos1-=25;
+      childEle1.css({"top":topPos1, "left":leftPos1});
+
+      topPos2 = childEle2.position().top;
+      leftPos2 = childEle2.position().left;
+      topPos2+=25;
+      // leftPos2+=25;
+      childEle2.css({"top":topPos2, "left":leftPos2});
+
+      topPos3 = childEle3.position().top;
+      leftPos3 = childEle3.position().left;
+      // topPos3-=25;
+      leftPos3+=25;
+      childEle3.css({"top":topPos3, "left":leftPos3});
+
+      topPos4 = childEle4.position().top;
+      leftPos4 = childEle4.position().left;
+      // topPos4+=25;
+      // leftPos4-=25;
+      childEle4.css({"top":topPos4, "left":leftPos4});
+
+      state = "horizontal1";
     }
   }
 }
