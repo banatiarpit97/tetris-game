@@ -31,6 +31,8 @@ var interval;
 var children;
 var game = true;
 var score = 0;
+var level = 1;
+var speed = 300;
 document.getElementById("boundary").style.backgroundColor = "grey";
 
 // e = "#"+randomArray[nextRandonNumber];
@@ -75,12 +77,12 @@ function generateNextBlock(){
   	nextRandonNumber = Math.floor(Math.random()*7);
   	nextRandomId = "#"+randomArray[nextRandonNumber]; 
   	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
-  	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
+  	$(nextRandomId).removeClass("hidden").css({"top":250, "left":945});
       // $("#next-block").html("");
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      // currentRandonNumber = 4;
+      currentRandonNumber = 1;
     blockColor();  
 
   	randomXPos = randomX(currentRandonNumber);
@@ -89,7 +91,7 @@ function generateNextBlock(){
   	// console.log(randomXPos)
       // $(currentRandomId).removeClass("hidden").css({"top": boundaryTop, "left":randomXPos});
       
-      interval = setInterval(moveDown, 200)
+      interval = setInterval(moveDown, speed)
   }  
 }
 
@@ -102,11 +104,19 @@ function moveDown(){
       childEle4.css("visibility", "visible");
     }
     z = checkEnd(currentLef4, currentTo4);
-    if(z==1){return;}
+    if(z==1){  
+              score+=10;
+               $("#score").html(score);
+               increaseLevel();
+               return;
+             }
     y = checkBelow(currentLef4, currentTo4)
     if(y==1){
                clearInterval(interval);
                score+=10;
+               $("#score").html(score);
+               increaseLevel();
+
                to4 = currentTo4
                checkCompleteRow(to4);
                checkGameOver();
@@ -135,6 +145,9 @@ function moveDown(){
                clearInterval(interval);
                to4 = currentTo4
                score+=10;
+               $("#score").html(score);
+               increaseLevel();
+
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
@@ -166,6 +179,9 @@ function moveDown(){
                clearInterval(interval);
                to4 = currentTo4
                score+=10;
+               $("#score").html(score);
+               increaseLevel();
+
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
@@ -202,6 +218,9 @@ function moveDown(){
                clearInterval(interval);
                to4 = currentTo4
                score+=10;
+               $("#score").html(score);
+               increaseLevel();
+
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
@@ -1073,14 +1092,14 @@ function checkCompleteRow(top){
   // console.log("gg")
   for(j=top-100;j<=top-25;j=j+25){
       count=0
-      for(i=375;i<=700;i=i+25){
-        console.log(i, j)
+      for(i=425;i<=750;i=i+25){
+        // console.log(i, j)
          checkele = document.elementFromPoint(i, j);
          checkbg = checkele.style.backgroundColor;
-         console.log(checkbg);
+         // console.log(checkbg);
          if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"||checkbg=="aqua"){
             count++;
-            console.log(count)
+            // console.log(count)
          }
          else if(checkbg == "grey"){
           break;
@@ -1108,7 +1127,7 @@ function completeRow(j){
   // console.log(j)
   for(i=j-25;i>=boundaryTop;i=i-25){
      // console.log("ll")
-    for(k=375;k<=700;k=k+25){
+    for(k=425;k<=750;k=k+25){
          console.log(k, i)
          checkelem = document.elementFromPoint(k, i);
          checkbg = checkelem.style.backgroundColor;
@@ -1128,9 +1147,21 @@ function completeRow(j){
         }    
     }
   }
-  score+=100;
+  for(v=0;v<10;v++){
+    score+=10;
+    increaseLevel();
+   } 
+  $("#score").html(score);
+  
+
   if(fullRow==4){
-    score+=400;
+    for(v=0;v<40;v++){
+    score+=10;
+    increaseLevel();
+     }
+    $("#score").html(score);
+
+
   }
 }  
 
@@ -1646,6 +1677,18 @@ function rotate(){
 
       state = "horizontal1";
     }
+  }
+}
+
+function increaseLevel(){
+  if((score%500) == 0){
+    level++;
+    $("#level").fadeOut();
+    setTimeout(function(){$("#level").fadeIn();$("#level span").html(level);}, 250);
+    
+
+
+    speed -=30;
   }
 }
 // generateNextBlock();
