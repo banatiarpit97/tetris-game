@@ -107,12 +107,13 @@ function moveDown(){
     if(y==1){
                clearInterval(interval);
                score+=10;
-               to4 = currentTo4-25
+               to4 = currentTo4
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
-      childEle4.css({"background-color":"grey"})
+    childEle4.css("top", currentTo4);
+      // childEle4.css({"background-color":"grey"})
     // console.log(currentTop)
 
 
@@ -125,20 +126,22 @@ function moveDown(){
     }
     y = checkBelow(currentLef3, currentTo3)
     if(y==1){
-               // currentTop4=childEle4.position().top;
-               // currentTop4-=25;
-               // childEle4.css("top", currentTop4);
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
 
-               childEle4.css({"background-color":color})
+               // childEle4.css({"background-color":color})
 
                clearInterval(interval);
-               to4 = currentTo4-25
+               to4 = currentTo4
                score+=10;
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
-      childEle3.css({"background-color":"grey"})
+    childEle3.css("top", currentTo3);
+
+      // childEle3.css({"background-color":"grey"})
       
 
     currentTo2=childEle2.position().top;
@@ -149,24 +152,27 @@ function moveDown(){
     }
     y = checkBelow(currentLef2, currentTo2)
     if(y==1){
-               // currentTop4=childEle4.position().top;
-               // currentTop4-=25;
-               // childEle4.css("top", currentTop4);
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
 
-               // currentTop3=childEle3.position().top;
-               // currentTop3-=25;
-               // childEle3.css("top", currentTop3);
-               childEle4.css({"background-color":color})
-               childEle3.css({"background-color":color})
+               currentTop3=childEle3.position().top;
+               currentTop3-=25;
+               childEle3.css("top", currentTop3);
+
+               // childEle4.css({"background-color":color})
+               // childEle3.css({"background-color":color})
  
                clearInterval(interval);
-               to4 = currentTo4-25
+               to4 = currentTo4
                score+=10;
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
-      childEle2.css({"background-color":"grey"})
+    childEle2.css("top", currentTo2);
+
+      // childEle2.css({"background-color":"grey"})
 
 
     currentTo1=childEle1.position().top;
@@ -177,42 +183,45 @@ function moveDown(){
     }
     y = checkBelow(currentLef1, currentTo1)
     if(y==1){
-               // currentTop4=childEle4.position().top;
-               // currentTop4-=25;
-               // childEle4.css("top", currentTop4);
+               currentTop4=childEle4.position().top;
+               currentTop4-=25;
+               childEle4.css("top", currentTop4);
 
-               // currentTop3=childEle3.position().top;
-               // currentTop3-=25;
-               // childEle3.css("top", currentTop3);
+               currentTop3=childEle3.position().top;
+               currentTop3-=25;
+               childEle3.css("top", currentTop3);
 
-               // currentTop2=childEle2.position().top;
-               // currentTop2-=25;
-               // childEle2.css("top", currentTop2);
-               childEle4.css({"background-color":color})
-               childEle3.css({"background-color":color})
-               childEle2.css({"background-color":color})
+               currentTop2=childEle2.position().top;
+               currentTop2-=25;
+               childEle2.css("top", currentTop2);
+
+               // childEle4.css({"background-color":color})
+               // childEle3.css({"background-color":color})
+               // childEle2.css({"background-color":color})
                
                clearInterval(interval);
-               to4 = currentTo4-25
+               to4 = currentTo4
                score+=10;
                checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
-      childEle1.css({"background-color":"grey"})
-
-
-    childEle4.css("top", currentTo4);
-    childEle4.css({"background-color":color})
-
-    childEle3.css("top", currentTo3);
-    childEle3.css({"background-color":color})
-    
-    childEle2.css("top", currentTo2);
-    childEle2.css({"background-color":color})
-
     childEle1.css("top", currentTo1);
-    childEle1.css({"background-color":color})
+
+      // childEle1.css({"background-color":"grey"})
+
+
+    // childEle4.css("top", currentTo4);
+    // childEle4.css({"background-color":color})
+
+    // childEle3.css("top", currentTo3);
+    // childEle3.css({"background-color":color})
+    
+    // childEle2.css("top", currentTo2);
+    // childEle2.css({"background-color":color})
+
+    // childEle1.css("top", currentTo1);
+    // childEle1.css({"background-color":color})
 
     
 
@@ -948,7 +957,7 @@ function checkRight(left, top){
             maxX = boundaryLeft + boxWidth;
             elem = document.elementFromPoint(left, top);
             bg = elem.style.backgroundColor;
-            console.log(bg)
+            // console.log(bg)
 
             if(bg=="red"||bg=="green"||bg=="magenta"||bg=="yellow"||bg=="orange"||bg=="blue"||bg=="aqua"||left>maxX){
                // clearInterval(interval);
@@ -1062,14 +1071,16 @@ function checkEnd(currentLeft, currentTop){
 function checkCompleteRow(top){
   fullRow = 0;
   // console.log("gg")
-  for(j=top-100;j<=top+25;j=j+25){
+  for(j=top-100;j<=top-25;j=j+25){
       count=0
       for(i=375;i<=700;i=i+25){
-        // console.log(i, j)
+        console.log(i, j)
          checkele = document.elementFromPoint(i, j);
          checkbg = checkele.style.backgroundColor;
-         if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"||bg=="aqua"){
+         console.log(checkbg);
+         if(checkbg=="red"||checkbg=="green"||checkbg=="magenta"||checkbg=="yellow"||checkbg=="orange"||checkbg=="blue"||checkbg=="aqua"){
             count++;
+            console.log(count)
          }
          else if(checkbg == "grey"){
           break;
@@ -1093,10 +1104,10 @@ function completeRow(j){
   // }
 
 
-console.log(boundaryTop)
+// console.log(boundaryTop)
   // console.log(j)
   for(i=j-25;i>=boundaryTop;i=i-25){
-     console.log("ll")
+     // console.log("ll")
     for(k=375;k<=700;k=k+25){
          console.log(k, i)
          checkelem = document.elementFromPoint(k, i);
@@ -1128,9 +1139,9 @@ function checkGameOver(){
   blockTop = childEle1.position().top;
   // blockTop += "px";
   topend = topend.split("px")
-  console.log(blockTop, topend[0])
+  // console.log(blockTop, topend[0])
   if(blockTop<=(topend[0])){
-    console.log("game over")
+    // console.log("game over")
     game = false;
   }
 }
