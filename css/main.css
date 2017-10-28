@@ -53,8 +53,8 @@ body{
 	height: 100px;
 }
 #l, #l-next,#inverted-l-next{
-	height: 75px;
-	width: 50px;
+	height: 50px;
+	width: 75px;
 }
 #t-next{
 	height: 50px;
@@ -68,19 +68,22 @@ body{
 	margin-top: 25px !important;
 	margin-left: 25px !important;
 }
-.l3-next, .l4-next{
+.l1-next, .l2-next, .l3-next{
     float: left;
 }
+.l4-next{
+	clear: both;
+	margin-top: 25px;
+}
 .inverted-l1-next, .inverted-l2-next, .inverted-l3-next{
-	margin-left: 25px !important;
 	float: right;
 }
-.inverted-l2-next{
+/*.inverted-l2-next{
 	clear: both;
-}
+}*/
 .inverted-l4-next{
-	float: left;
-	margin-top: -25px !important;
+	float: right;
+	/*margin-top: 25px !important;*/
 }
 #horizontal-zigzag, #horizontal-zigzag-next{
 	height: 50px;
@@ -192,7 +195,7 @@ body{
 	background-color: aqua;
 }
 .inverted-l1-next, .inverted-l2-next, .inverted-l3-next, .inverted-l4-next{
-	background-color: magenta;
+	background-color: orange;
 }
 .square1-next, .square2-next, .square3-next, .square4-next{
 	background-color: red;
@@ -208,7 +211,7 @@ body{
 	background-color: blue;
 }
 .inverted-horizontal-zigzag1-next, .inverted-horizontal-zigzag2-next, .inverted-horizontal-zigzag3-next, .inverted-horizontal-zigzag4-next{
-	background-color: blue;
+	background-color: yellow;
 }
 .vertical-zigzag1-next, .vertical-zigzag2-next, .vertical-zigzag3-next, .vertical-zigzag4-next{
 	background-color: orange;

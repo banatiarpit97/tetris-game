@@ -1,6 +1,6 @@
-var randomArray = ["square-next", "horizontal-rectangle-next", "vertical-rectangle-next", "l-next", "horizontal-zigzag-next", "vertical-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next", "t-next"];
+var randomArray = ["square-next", "horizontal-rectangle-next", "l-next", "horizontal-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next", "t-next"];
 var currentRandonNumber;
-var nextRandonNumber = Math.floor(Math.random()*9);
+var nextRandonNumber = Math.floor(Math.random()*7);
 // console.log(nextRandonNumber)
 
 var currentRandomId; 
@@ -17,7 +17,7 @@ var marginTop = $("#boundary").css("margin-top");
 var boxWidth = $("#boundary").width();
 var boxHeight = $("#boundary").height();
 
-var minX = boundaryLeft+25;
+var minX = boundaryLeft+50;
 var maxX = boundaryLeft + boxWidth;
 var randomXPos;
 var currentBlockWidth;
@@ -50,24 +50,18 @@ function blockColor(){
       color = "green";
    }
    else if(currentRandonNumber == 2){
-      color = "yellow";
+      color = "magenta";
    }
    else if(currentRandonNumber == 3){
-      color = "magenta";
+      color = "blue";
    }
    else if(currentRandonNumber == 4){
-      color = "blue";
-   }
-   else if(currentRandonNumber == 5){
       color = "orange";
    }
+   else if(currentRandonNumber == 5){
+      color = "yellow";
+   }
    else if(currentRandonNumber == 6){
-      color = "magenta";
-   }
-   else if(currentRandonNumber == 7){
-      color = "blue";
-   }
-   else if(currentRandonNumber == 8){
       color = "aqua";
    }
 };
@@ -78,7 +72,7 @@ generateNextBlock();
 function generateNextBlock(){
   if(game){
   	currentRandonNumber = nextRandonNumber;
-  	nextRandonNumber = Math.floor(Math.random()*9);
+  	nextRandonNumber = Math.floor(Math.random()*7);
   	nextRandomId = "#"+randomArray[nextRandonNumber]; 
   	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
   	$(nextRandomId).removeClass("hidden").css({"top":250, "left":885});
@@ -86,7 +80,7 @@ function generateNextBlock(){
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      currentRandonNumber = 6;
+      // currentRandonNumber = 4;
     blockColor();  
 
   	randomXPos = randomX(currentRandonNumber);
@@ -113,7 +107,8 @@ function moveDown(){
     if(y==1){
                clearInterval(interval);
                score+=10;
-               checkCompleteRow(top);
+               to4 = currentTo4-25
+               checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
@@ -137,8 +132,9 @@ function moveDown(){
                childEle4.css({"background-color":color})
 
                clearInterval(interval);
+               to4 = currentTo4-25
                score+=10;
-               checkCompleteRow(top);
+               checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
@@ -164,8 +160,9 @@ function moveDown(){
                childEle3.css({"background-color":color})
  
                clearInterval(interval);
+               to4 = currentTo4-25
                score+=10;
-               checkCompleteRow(top);
+               checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
@@ -196,8 +193,9 @@ function moveDown(){
                childEle2.css({"background-color":color})
                
                clearInterval(interval);
+               to4 = currentTo4-25
                score+=10;
-               checkCompleteRow(top);
+               checkCompleteRow(to4);
                checkGameOver();
                generateNextBlock();
       return;}
@@ -242,7 +240,7 @@ function moveDown(){
 
 function moveRight(){
 
-    if((currentRandonNumber == 6)||(currentRandonNumber == 7 && state=="horizontal")||(currentRandonNumber == 4 && state=="vertical")||(currentRandonNumber == 3 && state=="vertical2")){
+    if((currentRandonNumber == 4)||(currentRandonNumber == 5 && state=="horizontal")||(currentRandonNumber == 3 && state=="vertical")){
             currentTop=childEle1.position().top;
             currentLeft=childEle1.position().left;
             currentLeft+=25;
@@ -410,7 +408,7 @@ function moveRight(){
 
 function moveLeft(){
 
-    if((currentRandonNumber == 6)||(currentRandonNumber == 7 && state=="horizontal")||(currentRandonNumber == 4 && state=="vertical")||(currentRandonNumber == 3 && state=="vertical2")){
+    if((currentRandonNumber == 4)||(currentRandonNumber == 5 && state=="horizontal")||(currentRandonNumber == 3 && state=="vertical")){
             currentTop=childEle4.position().top;
             currentLeft=childEle4.position().left;
             currentLeft-=25;
@@ -558,16 +556,16 @@ function createElement(random){
     boundaryTop-=50;
 
 		$("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
+		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle2);
 		randomXPos+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
+		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle3);
 		randomXPos-=25;boundaryTop+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
+		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle4);
 		randomXPos+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"red"});
+		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 
    	}
 	else if(random == 1){
@@ -578,62 +576,64 @@ function createElement(random){
 		 childEle4 = $("<div>", {id: "horizontal-rectangle4", class:"horizontal-rectangle4 brick"});
     boundaryTop-=25;
     $("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
+		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle2);
 		randomXPos+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
+		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle3);
 		randomXPos+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
+		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle4);
 		randomXPos+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"green"});
+		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     state = "horizontal";
 
 	}
-	else if(random == 2){
-		 // $ele = $("<div>", {id: "vertical-rectangle"});
-		 childEle1 = $("<div>", {id: "vertical-rectangle1", class:"vertical-rectangle1 brick"});
-		 childEle2 = $("<div>", {id: "vertical-rectangle2", class:"vertical-rectangle2 brick"});
-		 childEle3 = $("<div>", {id: "vertical-rectangle3", class:"vertical-rectangle3 brick"});
-		 childEle4 = $("<div>", {id: "vertical-rectangle4", class:"vertical-rectangle4 brick"});
-    boundaryTop-=100;
+	// else if(random == 2){
+	// 	 // $ele = $("<div>", {id: "vertical-rectangle"});
+	// 	 childEle1 = $("<div>", {id: "vertical-rectangle1", class:"vertical-rectangle1 brick"});
+	// 	 childEle2 = $("<div>", {id: "vertical-rectangle2", class:"vertical-rectangle2 brick"});
+	// 	 childEle3 = $("<div>", {id: "vertical-rectangle3", class:"vertical-rectangle3 brick"});
+	// 	 childEle4 = $("<div>", {id: "vertical-rectangle4", class:"vertical-rectangle4 brick"});
+ //    boundaryTop-=100;
     
-    $("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
-		$("body").append(childEle2);
-		boundaryTop+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
-		$("body").append(childEle3);
-		boundaryTop+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
-		$("body").append(childEle4);
-		boundaryTop+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
-	}
-		else if(random == 3){
+ //    $("body").append(childEle1);
+	// 	childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
+	// 	$("body").append(childEle2);
+	// 	boundaryTop+=25;
+	// 	childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
+	// 	$("body").append(childEle3);
+	// 	boundaryTop+=25;
+	// 	childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
+	// 	$("body").append(childEle4);
+	// 	boundaryTop+=25;
+	// 	childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"yellow"});
+	// }
+		else if(random == 2){
 		 // $ele = $("<div>", {id: "l"});
 		 childEle1 = $("<div>", {id: "l1", class:"l1 brick"});
 		 childEle2 = $("<div>", {id: "l2", class:"l2 brick"});
 		 childEle3 = $("<div>", {id: "l3", class:"l3 brick"});
 		 childEle4 = $("<div>", {id: "l4", class:"l4 brick"});
-    boundaryTop-=75;
+    boundaryTop-=50;
+    // randomXPos+=50;
 		
     $("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle2);
-		boundaryTop+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
-		$("body").append(childEle3);
-		boundaryTop+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
-		$("body").append(childEle4);
 		randomXPos+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
-    state = "horizontal1";
+		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
+		$("body").append(childEle3);
+		randomXPos+=25;
+		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
+		$("body").append(childEle4);
+		boundaryTop+=25;
+    randomXPos-=50;
+		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
+    state = "vertical2";
 
 	}
-		else if(random == 4){
+		else if(random == 3){
 		 // $ele = $("<div>", {id: "horizontal-zigzag"});
 		 childEle1 = $("<div>", {id: "horizontal-zigzag1", class:"horizontal-zigzag1 brick"});
 		 childEle2 = $("<div>", {id: "horizontal-zigzag2", class:"horizontal-zigzag2 brick"});
@@ -642,67 +642,69 @@ function createElement(random){
     boundaryTop-=50;
 		
     $("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle2);
 		randomXPos+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle3);
 		boundaryTop+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
 		$("body").append(childEle4);
 		randomXPos+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     
     state = "horizontal";
 	}
-		else if(random == 5){
-		 // $ele = $("<div>", {id: "vertical-zigzag"});
-		 childEle1 = $("<div>", {id: "vertical-zigzag1", class:"vertical-zigzag1 brick"});
-		 childEle2 = $("<div>", {id: "vertical-zigzag2", class:"vertical-zigzag2 brick"});
-		 childEle3 = $("<div>", {id: "vertical-zigzag3", class:"vertical-zigzag3 brick"});
-		 childEle4 = $("<div>", {id: "vertical-zigzag4", class:"vertical-zigzag4 brick"});
-    boundaryTop-=75;
+	// 	else if(random == 5){
+	// 	 // $ele = $("<div>", {id: "vertical-zigzag"});
+	// 	 childEle1 = $("<div>", {id: "vertical-zigzag1", class:"vertical-zigzag1 brick"});
+	// 	 childEle2 = $("<div>", {id: "vertical-zigzag2", class:"vertical-zigzag2 brick"});
+	// 	 childEle3 = $("<div>", {id: "vertical-zigzag3", class:"vertical-zigzag3 brick"});
+	// 	 childEle4 = $("<div>", {id: "vertical-zigzag4", class:"vertical-zigzag4 brick"});
+ //    boundaryTop-=75;
 		
-    $("body").append(childEle1);
-		childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
-		$("body").append(childEle2);
-		boundaryTop+=25;
-		childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
-		$("body").append(childEle3);
-		randomXPos+=25;
-		childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
-		$("body").append(childEle4);
-		boundaryTop+=25;
-		childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
+ //    $("body").append(childEle1);
+	// 	childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
+	// 	$("body").append(childEle2);
+	// 	boundaryTop+=25;
+	// 	childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
+	// 	$("body").append(childEle3);
+	// 	randomXPos+=25;
+	// 	childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
+	// 	$("body").append(childEle4);
+	// 	boundaryTop+=25;
+	// 	childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"orange"});
 
-	}
-  else if(random == 6){
+	// }
+  else if(random == 4){
      // $e = $("<div>", {id: "inverted-l"});
      childEle1 = $("<div>", {id: "inverted-l1", class:"inverted-l1 brick"});
      childEle2 = $("<div>", {id: "inverted-l2", class:"inverted-l2 brick"});
      childEle3 = $("<div>", {id: "inverted-l3", class:"inverted-l3 brick"});
      childEle4 = $("<div>", {id: "inverted-l4", class:"inverted-l4 brick"});
-    boundaryTop-=75;
-    randomXPos+=25;
+    boundaryTop-=50;
+    randomXPos+=50;
     
     $("body").append(childEle1);
-    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle2);
-    boundaryTop+=25;
-    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
-    $("body").append(childEle3);
-    boundaryTop+=25;
-    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
-    $("body").append(childEle4);
+    // boundaryTop+=25;
     randomXPos-=25;
-    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"magenta"});
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
+    $("body").append(childEle3);
+    randomXPos-=25;
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
+    $("body").append(childEle4);
+    boundaryTop+=25;
+    randomXPos+=50;
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     // $("body").append($e);
     // $e.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
-    state = "horizontal1";
+    state = "vertical2";
 
   }
 
-  else if(random == 7){
+  else if(random == 5){
      // $ele = $("<div>", {id: "horizontal-zigzag"});
      childEle1 = $("<div>", {id: "inverted-horizontal-zigzag1", class:"inverted-horizontal-zigzag1 brick"});
      childEle2 = $("<div>", {id: "inverted-horizontal-zigzag2", class:"inverted-horizontal-zigzag2 brick"});
@@ -712,20 +714,20 @@ function createElement(random){
     randomXPos+=75;
     
     $("body").append(childEle1);
-    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle2);
     randomXPos-=25;
-    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle3);
     boundaryTop+=25;
-    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle4);
     randomXPos-=25;
-    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"blue"});
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     
     state = "horizontal";
 }
-    else if(random == 8){
+    else if(random == 6){
      // $ele = $("<div>", {id: "l"});
      childEle1 = $("<div>", {id: "t1", class:"t1 brick"});
      childEle2 = $("<div>", {id: "t2", class:"t2 brick"});
@@ -734,17 +736,17 @@ function createElement(random){
     boundaryTop-=50;
     
     $("body").append(childEle1);
-    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    childEle1.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle2);
     randomXPos+=25;
-    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    childEle2.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle3);
     randomXPos+=25;
-    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    childEle3.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     $("body").append(childEle4);
     randomXPos-=25;
     boundaryTop+=25;
-    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":"aqua"});
+    childEle4.css({"left": randomXPos, "top":boundaryTop, "background-color":color});
     state = "horizontal1";
 
   }
@@ -761,11 +763,11 @@ function createElement(random){
 }
 
 $(document).keydown(function(e){
-	if(e.keyCode == '40'){
+	if(e.keyCode == '40' && (game)){
     moveDown();
   }
 	
-	else if(e.keyCode == '39'){
+	else if(e.keyCode == '39' && (game)){
     moveRight();
 		// currentLeft = $ele.position().left;
   //       currentLeft+=25;
@@ -776,7 +778,7 @@ $(document).keydown(function(e){
   //         $ele.css("left", currentLeft); 
   //       }
 	}
-	else if(e.keyCode == '37'){
+	else if(e.keyCode == '37' && (game)){
     moveLeft();
 		// currentLeft = $ele.position().left;
   //       currentLeft-=25;
@@ -787,7 +789,7 @@ $(document).keydown(function(e){
   //         $ele.css("left", currentLeft); 
   //       }
 	}
-  else if(e.keyCode == '38'){
+  else if(e.keyCode == '38' && (game)){
     rotate();
   }
 });
@@ -803,29 +805,23 @@ maxX = boundaryLeft + boxWidth;
        
 	}
 	else if(random == 2){
-       maxX = maxX-25;
+       maxX = maxX-50;
        
 	}
 	else if(random == 3){
-       maxX = maxX-50;
+       maxX = maxX-75;
        
 	}
 	else if(random == 4){
-       maxX = maxX-75;
+       maxX = maxX-100;
 
 	}
 	else if(random == 5){
-       maxX = maxX-50;
+       maxX = maxX-150;
 
 	}
   else if(random == 6){
-       maxX = maxX-50;    
-  }
-  else if(random == 7){
-       maxX = maxX-75;
-  }
-  else if(random == 8){
-       maxX = maxX-75;
+       maxX = maxX-75;    
   }
     xpos =  (Math.floor((Math.random()*(maxX-minX+1)+minX)/25)*25);
     return xpos;
@@ -1064,8 +1060,9 @@ function checkEnd(currentLeft, currentTop){
 }
 
 function checkCompleteRow(top){
+  fullRow = 0;
   // console.log("gg")
-  for(j=top-100;j<=top-25;j=j+25){
+  for(j=top-100;j<=top+25;j=j+25){
       count=0
       for(i=375;i<=700;i=i+25){
         // console.log(i, j)
@@ -1080,6 +1077,7 @@ function checkCompleteRow(top){
       }
       // console.log(count)
       if(count==14){
+        fullRow++;
         // console.log("hh");
         completeRow(j)
       }
@@ -1120,6 +1118,9 @@ console.log(boundaryTop)
     }
   }
   score+=100;
+  if(fullRow==4){
+    score+=400;
+  }
 }  
 
 function checkGameOver(){
@@ -1192,7 +1193,7 @@ function rotate(){
     }
   }
 
-  else if(currentRandonNumber == 4){
+  else if(currentRandonNumber == 3){
     if(state == "horizontal"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
@@ -1248,30 +1249,30 @@ function rotate(){
       state = "horizontal";
     }
   }
-  else if(currentRandonNumber == 7){
+  else if(currentRandonNumber == 5){
     if(state == "horizontal"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
       topPos1-=50;
-      leftPos1-=25;
+      leftPos1-=50;
       childEle1.css({"top":topPos1, "left":leftPos1});
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
       topPos2-=25;
-      // leftPos2+=50;
+      leftPos2-=25;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
       topPos3-=50;
-      leftPos3+=25;
+      // leftPos3+=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
       leftPos4 = childEle4.position().left;
       topPos4-=25;
-      leftPos4+=50;
+      leftPos4+=25;
       childEle4.css({"top":topPos4, "left":leftPos4});
 
       state = "vertical";
@@ -1280,32 +1281,32 @@ function rotate(){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
       topPos1+=50;
-      leftPos1+=25;
+      leftPos1+=50;
       childEle1.css({"top":topPos1, "left":leftPos1});
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
       topPos2+=25;
-      // leftPos2+=50;
+      leftPos2+=25;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
       topPos3+=50;
-      leftPos3-=25;
+      // leftPos3-=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
       leftPos4 = childEle4.position().left;
       topPos4+=25;
-      leftPos4-=50;
+      leftPos4-=25;
       childEle4.css({"top":topPos4, "left":leftPos4});
 
       state = "horizontal";
     }
   }
 
-  else if(currentRandonNumber == 8){
+  else if(currentRandonNumber == 6){
     if(state == "horizontal1"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
@@ -1415,7 +1416,7 @@ function rotate(){
       state = "horizontal1";
     }
   }
-  else if(currentRandonNumber == 3){
+  else if(currentRandonNumber == 2){
     if(state == "horizontal1"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
@@ -1474,7 +1475,7 @@ function rotate(){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
       topPos1+=25;
-      leftPos1+=50;
+      // leftPos1+=50;
       childEle1.css({"top":topPos1, "left":leftPos1});
 
       topPos2 = childEle2.position().top;
@@ -1486,7 +1487,7 @@ function rotate(){
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
       // topPos3-=25;
-      leftPos3-=25;
+      leftPos3+=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
@@ -1501,7 +1502,7 @@ function rotate(){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
       topPos1-=25;
-      leftPos1-=50;
+      // leftPos1-=50;
       childEle1.css({"top":topPos1, "left":leftPos1});
 
       topPos2 = childEle2.position().top;
@@ -1513,7 +1514,7 @@ function rotate(){
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
       topPos3+=25;
-      // leftPos3-=25;
+      leftPos3-=50;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
@@ -1525,7 +1526,7 @@ function rotate(){
       state = "horizontal1";
     }
   }
-  else if(currentRandonNumber == 6){
+  else if(currentRandonNumber == 4){
     if(state == "horizontal1"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
@@ -1535,14 +1536,14 @@ function rotate(){
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
-      topPos2+=25;
-      leftPos2+=25;
+      topPos2+=50;
+      leftPos2+=50;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
-      // topPos3+=25;
-      // leftPos3+=25;
+      topPos3+=25;
+      leftPos3+=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
@@ -1562,14 +1563,14 @@ function rotate(){
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
-      topPos2-=50;
-      leftPos2-=50;
+      topPos2-=25;
+      leftPos2-=25;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
-      topPos3-=25;
-      leftPos3-=25;
+      // topPos3-=25;
+      // leftPos3-=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
@@ -1589,20 +1590,20 @@ function rotate(){
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
-      topPos2+=25;
-      leftPos2+=25;
+      // topPos2+=25;
+      // leftPos2+=25;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
-      // topPos3-=25;
-      // leftPos3-=25;
+      topPos3-=25;
+      leftPos3-=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
       leftPos4 = childEle4.position().left;
       // topPos4+=25;
-      // leftPos4-=50;
+      leftPos4+=50;
       childEle4.css({"top":topPos4, "left":leftPos4});
 
       state = "vertical2";
@@ -1610,26 +1611,26 @@ function rotate(){
     else if(state == "vertical2"){
       topPos1 = childEle1.position().top;
       leftPos1 = childEle1.position().left;
-      // topPos1-=25;
+      topPos1-=25;
       leftPos1-=25;
       childEle1.css({"top":topPos1, "left":leftPos1});
 
       topPos2 = childEle2.position().top;
       leftPos2 = childEle2.position().left;
-      topPos2+=25;
-      // leftPos2+=25;
+      topPos2-=25;
+      leftPos2-=25;
       childEle2.css({"top":topPos2, "left":leftPos2});
 
       topPos3 = childEle3.position().top;
       leftPos3 = childEle3.position().left;
-      topPos3+=50;
-      leftPos3+=25;
+      // topPos3+=50;
+      // leftPos3+=25;
       childEle3.css({"top":topPos3, "left":leftPos3});
 
       topPos4 = childEle4.position().top;
       leftPos4 = childEle4.position().left;
-      topPos4+=25;
-      // leftPos4+=50;
+      // topPos4+=25;
+      leftPos4-=50;
       childEle4.css({"top":topPos4, "left":leftPos4});
 
       state = "horizontal1";
