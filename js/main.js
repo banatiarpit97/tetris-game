@@ -966,6 +966,18 @@ $(document).keydown(function(e){
   else if(e.keyCode == '38' && (game)){
     rotate();
   }
+  else if(e.keyCode == '32'){
+   if(game){
+    clearInterval(interval);
+    game = false;
+    $(".pause").html("Resume");
+   }
+  else{
+    interval = setInterval(moveDown, speed);
+    game = true;
+    $(".pause").html("Pause");
+    }  
+  }
 });
 
 function randomX(random){
