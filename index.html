@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<body ng-app = "tetris">
+<body ng-app = "tetris" ng-controller="mainController">
 
 <div id="scorediv">
     <h1>Your Score is <br><span><b id="score">0</b></span></h1>
@@ -29,6 +29,73 @@
 </div>
 
 <div id="boundary">
+    <div id="tetris-game">
+        <div id="tetris">
+            <div class="tt">
+               <div class="tt1"></div>
+               <div class="tt2"></div>
+            </div>
+            <div class="e">
+               <div class="e1"></div>
+               <div class="e2"></div>
+               <div class="e3"></div>
+               <div class="e4"></div>
+            </div>
+            <div class="ttt">
+               <div class="tt1"></div>
+               <div class="tt2"></div>
+            </div>
+            <div class="r">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+            </div>
+            <div class="i">
+                <div class="i1"></div>
+            </div>
+            <div class="s">
+                <div class="s1"></div>
+                <div class="s2"></div>
+                <div class="s3"></div>
+                <div class="s4"></div>
+                <div class="s5"></div>
+            </div>
+        </div>
+
+        <div id="game">
+            <div class="g">
+              <div class="g1"></div>
+              <div class="g2"></div>  
+              <div class="g3"></div>  
+              <div class="g4"></div>  
+              <div class="g5"></div>  
+
+            </div>
+            <div class="a">
+                <div class="a1"></div>
+                <div class="a2"></div>
+                <div class="a3"></div>
+                <div class="a4"></div>
+            </div>
+            <div class="m">
+                <div class="m1"></div>
+                <div class="m2"></div>
+                <div class="m3"></div>
+                <div class="m4"></div>
+                <div class="m5"></div>
+
+            </div>
+            <div class="e">
+               <div class="e1"></div>
+               <div class="e2"></div>
+               <div class="e3"></div>
+               <div class="e4"></div>
+            </div>
+        </div>
+    </div>
 <!--     <div class="divider vr1"><div>
     <div class="divider vr2"><div>
     <div class="divider vr3"><div>
@@ -109,6 +176,28 @@
 <h3 class="next-heading">NEXT</h3>
 <div id="next-block"></div>
 
+<div id="buttons">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button id="start" class="md-raised md-primary" ng-click="startGame();">Start</md-button>
+      <md-button class="md-raised md-warn" ng-click="instructions($event)">Instructions</md-button>
+    </section>
+</div> 
+
+<div id="buttons2" class="hidden">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised md-primary pause" ng-click = "pauseGame()">Pause</md-button>
+      <md-button class="md-raised md-primary" ng-click="restartGame();">Restart</md-button>
+    </section>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised md-warn instructions" ng-click="instructions($event)">Instructions</md-button>
+    </section>
+</div>  
+
+<div class="bottom">
+    <hr>
+    <p id="footer">Arpit Banati &copy; <span id="year"></span></p>  
+</div>
 
 
 <!--Script FIles included here -->
@@ -121,10 +210,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <!--Script FIles included here -->
-<script >
+<!-- <script >
     angular.module('tetris',['ngMaterial']);
 
-</script>
+</script> -->
 </body>
 
 </html>

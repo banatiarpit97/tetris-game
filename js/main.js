@@ -1,12 +1,158 @@
+angular.module('tetris',['ngMaterial'])
+  .controller('mainController', function($scope, $mdDialog){
+ 
+date = new Date();
+year = date.getFullYear();
+$("#footer #year").html(year);
+
+$scope.instructions = function(ev) {
+             clearInterval(interval)
+             game = false;
+             $mdDialog.show({
+                 controller: InstructionsController,
+                 templateUrl: 'instructions.html',
+                 parent: angular.element(document.body),
+                 targetEvent: ev,
+                 clickOutsideToClose:true// Only for -xs, -sm breakpoints.
+             });
+
+     };
+
+$scope.gameOverMessage = function(ev) {
+             wid = (($(window).width())/2)+500;
+             $mdDialog.show({
+                 controller: gameOverMessageController,
+                 templateUrl: 'gameover.html',
+                 parent: angular.element(document.body),
+                 targetEvent: ev,
+                 clickOutsideToClose:true,// Only for -xs, -sm breakpoints.
+                 openFrom:{
+                     top: 0,
+                     width: wid,
+                     height: 10
+                 },
+                 closeTo:{
+                     top:0
+                 }
+             });
+
+     };     
+
+function InstructionsController($scope, $mdDialog) {
+             $scope.close = function() {
+                 interval = setInterval(moveDown, speed);
+                 game=true;
+                 $mdDialog.cancel();
+             };
+             $scope.cancel = function() {
+                 interval = setInterval(moveDown, speed);
+                 game=true;
+                 $mdDialog.cancel();
+             };
+             
+        };
+
+function gameOverMessageController($scope, $mdDialog) {
+             $scope.close = function() {
+                 score = 0;
+                  $("#score").html(score);
+                  level = 1;
+                  $("#level span").html(level);
+                 $(".square1,.square2,.square3,.square4,.horizontal-rectangle1,.horizontal-rectangle2,.horizontal-rectangle3,.horizontal-rectangle4,.l1,.l2,.l3,.l4,.inverted-l1,.inverted-l2,.inverted-l3,.inverted-l4,.horizontal-zigzag1,.horizontal-zigzag2,.horizontal-zigzag3,.horizontal-zigzag4,.inverted-horizontal-zigzag1,.inverted-horizontal-zigzag2,.inverted-horizontal-zigzag3,.inverted-horizontal-zigzag4,.t1,.t2,.t3,.t4").remove();
+                 $("#tetris-game").removeClass("hidden");
+
+                 $mdDialog.cancel();
+             };
+             $scope.cancel = function() {
+                 score = 0;
+                  $("#score").html(score);
+                  level = 1;
+                  $("#level span").html(level);
+                 $(".square1,.square2,.square3,.square4,.horizontal-rectangle1,.horizontal-rectangle2,.horizontal-rectangle3,.horizontal-rectangle4,.l1,.l2,.l3,.l4,.inverted-l1,.inverted-l2,.inverted-l3,.inverted-l4,.horizontal-zigzag1,.horizontal-zigzag2,.horizontal-zigzag3,.horizontal-zigzag4,.inverted-horizontal-zigzag1,.inverted-horizontal-zigzag2,.inverted-horizontal-zigzag3,.inverted-horizontal-zigzag4,.t1,.t2,.t3,.t4").remove();
+                 $("#tetris-game").removeClass("hidden");
+
+                 $mdDialog.cancel();
+             };
+             $scope.confirm = function(){
+                 score = 0;
+                  $("#score").html(score);
+                  level = 1;
+                  $("#level span").html(level);
+                 $(".square1,.square2,.square3,.square4,.horizontal-rectangle1,.horizontal-rectangle2,.horizontal-rectangle3,.horizontal-rectangle4,.l1,.l2,.l3,.l4,.inverted-l1,.inverted-l2,.inverted-l3,.inverted-l4,.horizontal-zigzag1,.horizontal-zigzag2,.horizontal-zigzag3,.horizontal-zigzag4,.inverted-horizontal-zigzag1,.inverted-horizontal-zigzag2,.inverted-horizontal-zigzag3,.inverted-horizontal-zigzag4,.t1,.t2,.t3,.t4").remove();
+                 $("#tetris-game").removeClass("hidden");
+                 $mdDialog.cancel();
+
+             }
+             
+        };
+
+
+$scope.startGame =  function(){
+  $("#tetris-game").css("animation", "").addClass("hidden");
+  game = true;
+  nextRandonNumber = Math.floor(Math.random()*7);
+  nextRandomId = "#"+randomArray[nextRandonNumber]; 
+  nextEle = $(nextRandomId);
+  generateNextBlock();
+  $("#buttons").addClass("hidden");
+  $("#buttons2").removeClass("hidden");
+} 
+
+$scope.pauseGame = function(){
+  if(game){
+    clearInterval(interval);
+    game = false;
+    $(".pause").html("Resume");
+  }
+  else{
+    interval = setInterval(moveDown, speed);
+    game = true;
+    $(".pause").html("Pause");
+
+  }  
+}
+
+$scope.restartGame = function(){
+  game = false;
+  clearInterval(interval)
+  score = 0;
+  $("#score").html(score);
+  level = 1;
+  $("#level span").html(level);
+  $("#buttons2").addClass("hidden");
+  $("#buttons").removeClass("hidden");
+  
+  $("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
+  nextRandonNumber = Math.floor(Math.random()*7);
+  nextRandomId = "#"+randomArray[nextRandonNumber]; 
+  nextEle = $(nextRandomId);
+  s = boundaryTop+boxHeight;
+  // for(i=s;i>boundaryTop;i=i-25){
+  //    for(k=425;k<=750;k=k+25){
+  //        // console.log(k, i)
+  //        checkelem = document.elementFromPoint(k, i);
+  //        checkelem.style.backgroundColor = "grey";
+  //        checkelem.style.border="none";
+  //        $("#boundary").css({"border-style":"solid", "border-width":"5px", "border-color":"black"})
+
+  //   }
+  // }
+  $(".square1,.square2,.square3,.square4,.horizontal-rectangle1,.horizontal-rectangle2,.horizontal-rectangle3,.horizontal-rectangle4,.l1,.l2,.l3,.l4,.inverted-l1,.inverted-l2,.inverted-l3,.inverted-l4,.horizontal-zigzag1,.horizontal-zigzag2,.horizontal-zigzag3,.horizontal-zigzag4,.inverted-horizontal-zigzag1,.inverted-horizontal-zigzag2,.inverted-horizontal-zigzag3,.inverted-horizontal-zigzag4,.t1,.t2,.t3,.t4").remove();
+  $("#tetris-game").removeClass("hidden");
+  // game =true;
+  // generateNextBlock();
+}
+
+
+
 var randomArray = ["square-next", "horizontal-rectangle-next", "l-next", "horizontal-zigzag-next", "inverted-l-next", "inverted-horizontal-zigzag-next", "t-next"];
 var currentRandonNumber;
-var nextRandonNumber = Math.floor(Math.random()*7);
+var nextRandonNumber ;
 // console.log(nextRandonNumber)
 
 var currentRandomId; 
-var nextRandomId = "#"+randomArray[nextRandonNumber]; 
-nextEle = $(nextRandomId);
-nextEle.removeClass("hidden").css({"top":250, "left":885});
+var nextRandomId ; 
+var nextEle;
 // $("#next-block").html(nextEle);
 // console.log(nextEle)
 
@@ -29,7 +175,7 @@ var childEle3;
 var childEle4;
 var interval;
 var children;
-var game = true;
+var game = false;
 var score = 0;
 var level = 1;
 var speed = 300;
@@ -69,20 +215,20 @@ function blockColor(){
 };
 
 
-generateNextBlock();
 
 function generateNextBlock(){
   if(game){
+    nextEle.removeClass("hidden").css({"top":200, "left":1000});
   	currentRandonNumber = nextRandonNumber;
   	nextRandonNumber = Math.floor(Math.random()*7);
   	nextRandomId = "#"+randomArray[nextRandonNumber]; 
   	$("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
-  	$(nextRandomId).removeClass("hidden").css({"top":250, "left":945});
+  	$(nextRandomId).removeClass("hidden").css({"top":200, "left":1000});
       // $("#next-block").html("");
       // nextEle = $(nextRandomId);
       // $("#next-block").html(nextEle);
 
-      currentRandonNumber = 1;
+      // currentRandonNumber = 1;
     blockColor();  
 
   	randomXPos = randomX(currentRandonNumber);
@@ -1173,8 +1319,22 @@ function checkGameOver(){
   // console.log(blockTop, topend[0])
   if(blockTop<=(topend[0])){
     // console.log("game over")
-    game = false;
+    gameOver();
   }
+}
+
+function gameOver(){
+  game = false;
+  clearInterval(interval)
+  $("#buttons2").addClass("hidden");
+  $("#buttons").removeClass("hidden");
+  
+  $("#square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #inverted-l-next, #horizontal-zigzag-next, #inverted-horizontal-zigzag-next, #vertical-zigzag-next, #t-next").addClass("hidden");
+  // $("#tetris-game").removeClass("hidden");
+  // game =true;
+  // generateNextBlock();
+
+  $scope.gameOverMessage();
 }
 
 function rotate(){
@@ -1687,10 +1847,14 @@ function increaseLevel(){
     setTimeout(function(){$("#level").fadeIn();$("#level span").html(level);}, 250);
     
 
-
-    speed -=30;
+    if(speed>100){
+      speed -=25;
+    }
   }
 }
+
+
+});
 // generateNextBlock();
 
 //  interval = setInterval(moveDown, 250);
