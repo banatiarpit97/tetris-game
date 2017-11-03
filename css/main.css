@@ -68,14 +68,21 @@ hr{
 	border-style: solid;
 	width: 150px;
 	height: 150px;
-	margin-right: -112px;
-	margin-top: 145px;
+	/*margin-right: -112px;*/
+	/*margin-top: 145px;*/
+    position: absolute;
+    top: 145px;
+    left: 961px;
 	float: right;
 }
 .next-heading{
 	float: right;
-	margin-right: 230px;
-	margin-top: 117px;
+	/*margin-right: 230px;*/
+	/*margin-top: 117px;*/
+    position: absolute;
+    top:99px;
+    left: 995px;
+
 }
 #square, #horizontal-rectangle, #vertical-rectangle, #l, #horizontal-zigzag, #vertical-zigzag, #square-next, #horizontal-rectangle-next, #vertical-rectangle-next, #l-next, #horizontal-zigzag-next, #vertical-zigzag-next, #inverted-l-next{
 	position: absolute;
